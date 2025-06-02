@@ -1,9 +1,9 @@
-# ZPT: Zoom-Pan-Tilt Knowledge Navigation Ontology
+# ZPT Knowledge Navigation Ontology
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A semantic vocabulary for dynamic knowledge navigation using camera metaphors to control information access across three dimensions: **zoom** (abstraction level), **pan** (domain scope), and **tilt** (representation method).
+A semantic vocabulary for dynamic knowledge navigation using camera metaphors to control information access across three dimensions: **Zoom** (abstraction level), **Pan** (domain scope), and **Tilt** (representation method).
 
 **Status 2025-06-02 : first proper draft, untested in practice; docs still covered in AI fingerprints.**
 
