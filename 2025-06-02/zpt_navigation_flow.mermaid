@@ -1,0 +1,23 @@
+flowchart TD
+    Start([User Query]) --> ParseQuery[Extract ZPT Parameters]
+    
+    ParseQuery --> ZoomAnalysis[Analyze Required<br/>Abstraction Level]
+    ParseQuery --> PanAnalysis[Analyze Domain<br/>Scope Requirements]
+    ParseQuery --> TiltAnalysis[Analyze Representation<br/>Preferences]
+    
+    ZoomAnalysis --> ZoomLevel{Determine<br/>Zoom Level}
+    ZoomLevel -->|Detailed| EntityLevel[Entity Level<br/>ragno:Entity]
+    ZoomLevel -->|Summary| UnitLevel[Unit Level<br/>ragno:Unit]
+    ZoomLevel -->|Full Text| TextLevel[Text Level<br/>ragno:TextElement]
+    ZoomLevel -->|High-level| CommunityLevel[Community Level<br/>ragno:CommunityElement]
+    ZoomLevel -->|Overview| CorpusLevel[Corpus Level<br/>ragno:Corpus]
+    
+    PanAnalysis --> PanScope{Determine<br/>Pan Domain}
+    PanScope -->|Thematic| TopicDomain[Topic Domain<br/>Subject Areas]
+    PanScope -->|Entity-based| EntityDomain[Entity Domain<br/>Specific Entities]
+    PanScope -->|Time-based| TemporalDomain[Temporal Domain<br/>Time Periods]
+    PanScope -->|Location-based| GeospatialDomain[Geospatial Domain<br/>Geographic Areas]
+    
+    TiltAnalysis --> TiltMethod{Select<br/>Projection Method}
+    TiltMethod -->|Semantic| EmbeddingProjection[Embedding Projection<br/>Vector Similarity]
+    TiltMethod -->|Lexical| KeywordProjection
