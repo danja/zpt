@@ -2,9 +2,9 @@
 
 Imagine you're exploring a vast library using a special camera. You can **zoom** in to read individual words or zoom out to see entire sections. You can **pan** left and right to explore different topics - from science to literature to history. You can **tilt** the camera to change how you see the information - perhaps through colored filters that highlight keywords, or special lenses that show connections between books.
 
-The ZPT (Zoom-Pan-Tilt) ontology brings this camera metaphor to digital knowledge exploration. It provides a structured way to describe how people and computer systems can navigate through complex information spaces by adjusting three key dimensions:
-
 ![Orang utan librarian](media/ook.png) 
+
+The ZPT (Zoom-Pan-Tilt) ontology brings this camera metaphor to digital knowledge exploration. It provides a structured way to describe how people and computer systems can navigate through complex information spaces by adjusting three key dimensions:
 
 ### The Three Dimensions
 
