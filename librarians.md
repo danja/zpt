@@ -31,7 +31,7 @@ Traditional search gives you a fixed list of results. ZPT navigation adapts to g
 
 ## Technical Overview
 
-ZPT extends the [Ragno ontology](http://purl.org/stuff/ragno/) for heterogeneous knowledge graphs with dynamic navigation capabilities. It integrates with standard vocabularies including SKOS (for concept organization), PROV-O (for tracking navigation history), and Dublin Core (for metadata).
+ZPT extends the [Ragno ontology](https://github.com/danja/ragno) for heterogeneous knowledge graphs with dynamic navigation capabilities. It integrates with standard vocabularies including SKOS (for concept organization), PROV-O (for tracking navigation history), and Dublin Core (for metadata).
 
 ### Key Concepts
 
