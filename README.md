@@ -15,6 +15,8 @@ A semantic vocabulary for dynamic knowledge navigation using camera metaphors to
 
 *There are also confusing diagrams under [media/](media).*
 
+![poster](media/poster.png)
+
 ## Overview
 
 Agents, both human and artificial have limits on the amount of information they can process at a given time : working memory/context window. In attempt to optimise processing workflows, two complimentary ontologies have been developed: [Ragno](https://github.com/danja/ragno), which offers a representation of a knowledgebase that is friendly to both Semantic Web and Language Model technologies, and here ZPT which provides a means of selectively navigating the knowledgebase. 
