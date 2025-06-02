@@ -1,4 +1,4 @@
-# ZPT: Zoom-Pan-Tilt Knowledge Navigation Vocabulary
+# ZPT Namespace Document
 
 **Namespace URI:** http://purl.org/stuff/zpt/  
 **Preferred Namespace Prefix:** zpt  
