@@ -1,0 +1,110 @@
+graph TB
+    subgraph "PROV-O Integration"
+        PROVEntity[prov:Entity]
+        PROVActivity[prov:Activity]
+        PROVAgent[prov:Agent]
+    end
+    
+    subgraph "SKOS Integration"
+        SKOSConcept[skos:Concept]
+        SKOSCollection[skos:Collection]
+    end
+    
+    subgraph "Ragno Integration"
+        RagnoElement[ragno:Element]
+        RagnoCorpuscle[ragno:Corpuscle]
+    end
+    
+    subgraph "ZPT Navigation Core"
+        NavigationView[zpt:NavigationView]
+        NavigationSession[zpt:NavigationSession]
+        NavigationAgent[zpt:NavigationAgent]
+        NavigationDimension[zpt:NavigationDimension]
+        
+        NavigableCorpuscle[zpt:NavigableCorpuscle]
+        NavigableElement[zpt:NavigableElement]
+    end
+    
+    subgraph "ZPT States"
+        ZoomState[zpt:ZoomState]
+        PanState[zpt:PanState]
+        TiltState[zpt:TiltState]
+    end
+    
+    subgraph "ZPT Dimensions"
+        ZoomLevel[zpt:ZoomLevel]
+        PanDomain[zpt:PanDomain]
+        TiltProjection[zpt:TiltProjection]
+    end
+    
+    subgraph "Zoom Levels"
+        EntityLevel[zpt:EntityLevel]
+        UnitLevel[zpt:UnitLevel]
+        TextLevel[zpt:TextLevel]
+        CommunityLevel[zpt:CommunityLevel]
+        CorpusLevel[zpt:CorpusLevel]
+    end
+    
+    subgraph "Tilt Projections"
+        EmbeddingProjection[zpt:EmbeddingProjection]
+        KeywordProjection[zpt:KeywordProjection]
+        GraphProjection[zpt:GraphProjection]
+    end
+    
+    subgraph "Pan Domains"
+        TopicDomain[zpt:TopicDomain]
+        EntityDomain[zpt:EntityDomain]
+        TemporalDomain[zpt:TemporalDomain]
+    end
+    
+    %% Core inheritance
+    NavigationView -.->|rdfs:subClassOf| PROVEntity
+    NavigationSession -.->|rdfs:subClassOf| PROVActivity
+    NavigationAgent -.->|rdfs:subClassOf| PROVAgent
+    
+    NavigationDimension -.->|rdfs:subClassOf| SKOSConcept
+    ZoomLevel -.->|rdfs:subClassOf| NavigationDimension
+    PanDomain -.->|rdfs:subClassOf| SKOSCollection
+    TiltProjection -.->|rdfs:subClassOf| NavigationDimension
+    
+    NavigableCorpuscle -.->|rdfs:subClassOf| RagnoCorpuscle
+    NavigableElement -.->|rdfs:subClassOf| RagnoElement
+    
+    %% State relationships
+    NavigationView -->|zpt:hasZoomState| ZoomState
+    NavigationView -->|zpt:hasPanState| PanState
+    NavigationView -->|zpt:hasTiltState| TiltState
+    
+    ZoomState -->|zpt:atZoomLevel| ZoomLevel
+    PanState -->|zpt:withPanDomain| PanDomain
+    TiltState -->|zpt:withTiltProjection| TiltProjection
+    
+    %% Specific instances
+    EntityLevel -.->|rdf:type| ZoomLevel
+    UnitLevel -.->|rdf:type| ZoomLevel
+    TextLevel -.->|rdf:type| ZoomLevel
+    CommunityLevel -.->|rdf:type| ZoomLevel
+    CorpusLevel -.->|rdf:type| ZoomLevel
+    
+    EmbeddingProjection -.->|rdf:type| TiltProjection
+    KeywordProjection -.->|rdf:type| TiltProjection
+    GraphProjection -.->|rdf:type| TiltProjection
+    
+    TopicDomain -.->|rdf:type| PanDomain
+    EntityDomain -.->|rdf:type| PanDomain
+    TemporalDomain -.->|rdf:type| PanDomain
+    
+    %% Navigation relationships
+    NavigationView -->|zpt:selectedCorpuscle| NavigableCorpuscle
+    NavigationView -->|zpt:navigatedBy| NavigationAgent
+    NavigationView -->|zpt:partOfSession| NavigationSession
+    
+    classDef zptCore fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    classDef zptState fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef zptDimension fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef external fill:#fff3e0,stroke:#f57c00,stroke-width:1px
+    
+    class NavigationView,NavigationSession,NavigationAgent,NavigableCorpuscle,NavigableElement zptCore
+    class ZoomState,PanState,TiltState zptState
+    class ZoomLevel,PanDomain,TiltProjection,NavigationDimension,EntityLevel,UnitLevel,TextLevel,CommunityLevel,CorpusLevel,EmbeddingProjection,KeywordProjection,GraphProjection,TopicDomain,EntityDomain,TemporalDomain zptDimension
+    class PROVEntity,PROVActivity,PROVAgent,SKOSConcept,SKOSCollection,RagnoElement,RagnoCorpuscle external
