@@ -1,0 +1,493 @@
+{
+  "queryToZptMapping": {
+    "description": "Examples showing how natural language queries map to ZPT navigation parameters",
+    "lastUpdated": "2024-06-02",
+    "mappingAlgorithm": "rule_based_with_ml_enhancement",
+    "examples": [
+      {
+        "queryId": "q001",
+        "naturalLanguageQuery": "Find recent research papers on neural network attention mechanisms",
+        "queryAnalysis": {
+          "queryType": "research_lookup",
+          "domainIndicators": ["research papers", "neural network", "attention mechanisms"],
+          "temporalIndicators": ["recent"],
+          "scopeIndicators": ["research"],
+          "complexityLevel": "expert"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "TextLevel",
+            "reasoning": "User wants full research papers, not summaries",
+            "confidence": 0.89
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:AcademicDomain",
+                "weight": 0.8,
+                "reasoning": "Explicit request for research papers"
+              },
+              {
+                "domain": "doc:AIDomain", 
+                "weight": 0.9,
+                "reasoning": "Neural networks are AI technology"
+              },
+              {
+                "domain": "doc:Recent2024Domain",
+                "weight": 0.7,
+                "reasoning": "Recent temporal indicator"
+              }
+            ],
+            "combinationMethod": "weighted_intersection"
+          },
+          "tilt": {
+            "projection": "EmbeddingProjection",
+            "reasoning": "Academic research benefits from semantic similarity",
+            "fallback": "KeywordProjection",
+            "confidence": 0.85
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:academic_paper_1"],
+          "resultCount": 1,
+          "averageRelevance": 0.92,
+          "executionTime": "148ms"
+        },
+        "navigationView": {
+          "id": "view_q001",
+          "optimizationScore": 0.88,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:academic_paper_1",
+              "relevanceScore": 0.92,
+              "selectionReason": "Perfect match for neural network attention research"
+            }
+          ]
+        }
+      },
+      {
+        "queryId": "q002", 
+        "naturalLanguageQuery": "What are the latest developments in AI for healthcare?",
+        "queryAnalysis": {
+          "queryType": "current_events_exploration",
+          "domainIndicators": ["AI", "healthcare"],
+          "temporalIndicators": ["latest"],
+          "scopeIndicators": ["developments"],
+          "complexityLevel": "intermediate"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "CommunityLevel",
+            "reasoning": "User wants overview of developments, not detailed papers",
+            "confidence": 0.91
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:AIHealthcare2024Domain",
+                "weight": 1.0,
+                "reasoning": "Perfect match for AI healthcare focus"
+              }
+            ],
+            "combinationMethod": "single_domain"
+          },
+          "tilt": {
+            "projection": "TemporalProjection",
+            "reasoning": "Latest developments require temporal ordering",
+            "fallback": "EmbeddingProjection",
+            "confidence": 0.87
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:news_article_1"],
+          "resultCount": 1,
+          "averageRelevance": 0.89,
+          "executionTime": "92ms"
+        },
+        "navigationView": {
+          "id": "view_q002",
+          "optimizationScore": 0.91,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:news_article_1",
+              "relevanceScore": 0.89,
+              "selectionReason": "Recent news on AI healthcare breakthroughs"
+            }
+          ]
+        }
+      },
+      {
+        "queryId": "q003",
+        "naturalLanguageQuery": "How do I use the ZPT API to create navigation views?",
+        "queryAnalysis": {
+          "queryType": "technical_how_to",
+          "domainIndicators": ["ZPT API", "navigation views"],
+          "temporalIndicators": [],
+          "scopeIndicators": ["how to", "create"],
+          "complexityLevel": "intermediate"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "UnitLevel",
+            "reasoning": "User needs specific sections like code examples and procedures",
+            "confidence": 0.93
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:TechnicalDomain",
+                "weight": 1.0,
+                "reasoning": "API documentation request"
+              }
+            ],
+            "combinationMethod": "single_domain"
+          },
+          "tilt": {
+            "projection": "KeywordProjection",
+            "reasoning": "Technical documentation benefits from precise keyword matching",
+            "fallback": "EmbeddingProjection",
+            "confidence": 0.94
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:technical_doc_1"],
+          "resultCount": 1,
+          "averageRelevance": 0.96,
+          "executionTime": "67ms"
+        },
+        "navigationView": {
+          "id": "view_q003",
+          "optimizationScore": 0.93,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:technical_doc_1",
+              "relevanceScore": 0.96,
+              "selectionReason": "ZPT API documentation with code examples"
+            }
+          ]
+        }
+      },
+      {
+        "queryId": "q004",
+        "naturalLanguageQuery": "Show me European regulations on digital privacy for AI systems",
+        "queryAnalysis": {
+          "queryType": "policy_lookup",
+          "domainIndicators": ["regulations", "digital privacy", "AI systems"],
+          "temporalIndicators": [],
+          "scopeIndicators": ["European"],
+          "complexityLevel": "advanced"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "TextLevel",
+            "reasoning": "Regulatory documents require full text for legal precision",
+            "confidence": 0.95
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:EUPrivacyRegulationDomain",
+                "weight": 0.95,
+                "reasoning": "Perfect match for EU privacy regulation"
+              },
+              {
+                "domain": "doc:EuropeanUnionDomain",
+                "weight": 0.8,
+                "reasoning": "Geographic scope indicator"
+              }
+            ],
+            "combinationMethod": "weighted_intersection"
+          },
+          "tilt": {
+            "projection": "KeywordProjection",
+            "reasoning": "Legal documents require precise terminology matching",
+            "fallback": "EmbeddingProjection",
+            "confidence": 0.92
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:policy_document_1"],
+          "resultCount": 1,
+          "averageRelevance": 0.94,
+          "executionTime": "156ms"
+        },
+        "navigationView": {
+          "id": "view_q004",
+          "optimizationScore": 0.92,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:policy_document_1",
+              "relevanceScore": 0.94,
+              "selectionReason": "EU Digital Privacy Protection Act covers AI regulation"
+            }
+          ]
+        }
+      },
+      {
+        "queryId": "q005",
+        "naturalLanguageQuery": "What research is being done on sustainable computing?",
+        "queryAnalysis": {
+          "queryType": "topic_exploration",
+          "domainIndicators": ["research", "sustainable computing"],
+          "temporalIndicators": ["being done"],
+          "scopeIndicators": ["what"],
+          "complexityLevel": "intermediate"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "CommunityLevel",
+            "reasoning": "Exploratory query wants overview of research area",
+            "confidence": 0.86
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:SustainabilityDomain",
+                "weight": 0.9,
+                "reasoning": "Sustainable computing is environmental topic"
+              },
+              {
+                "domain": "doc:AcademicDomain",
+                "weight": 0.8,
+                "reasoning": "Research context indicator"
+              }
+            ],
+            "combinationMethod": "weighted_intersection"
+          },
+          "tilt": {
+            "projection": "EmbeddingProjection",
+            "reasoning": "Topic exploration benefits from semantic similarity",
+            "fallback": "KeywordProjection",
+            "confidence": 0.81
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:academic_paper_2"],
+          "resultCount": 1,
+          "averageRelevance": 0.87,
+          "executionTime": "134ms"
+        },
+        "navigationView": {
+          "id": "view_q005",
+          "optimizationScore": 0.84,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:academic_paper_2",
+              "relevanceScore": 0.87,
+              "selectionReason": "Research on green algorithms and energy-efficient computing"
+            }
+          ]
+        }
+      },
+      {
+        "queryId": "q006",
+        "naturalLanguageQuery": "Give me a quick summary of what's new in AI this year",
+        "queryAnalysis": {
+          "queryType": "summary_request",
+          "domainIndicators": ["AI"],
+          "temporalIndicators": ["this year"],
+          "scopeIndicators": ["quick summary", "what's new"],
+          "complexityLevel": "beginner"
+        },
+        "zptMapping": {
+          "zoom": {
+            "level": "UnitLevel",
+            "reasoning": "Quick summary needs abstracts and key points, not full texts",
+            "confidence": 0.88
+          },
+          "pan": {
+            "domains": [
+              {
+                "domain": "doc:AIDomain",
+                "weight": 0.9,
+                "reasoning": "AI focus specified"
+              },
+              {
+                "domain": "doc:Recent2024Domain", 
+                "weight": 0.85,
+                "reasoning": "This year temporal constraint"
+              }
+            ],
+            "combinationMethod": "weighted_intersection"
+          },
+          "tilt": {
+            "projection": "TemporalProjection",
+            "reasoning": "Recent developments best accessed chronologically",
+            "fallback": "EmbeddingProjection",
+            "confidence": 0.79
+          }
+        },
+        "expectedResults": {
+          "documentIds": ["doc:academic_paper_1", "doc:news_article_1", "doc:academic_paper_2"],
+          "resultCount": 3,
+          "averageRelevance": 0.83,
+          "executionTime": "203ms"
+        },
+        "navigationView": {
+          "id": "view_q006",
+          "optimizationScore": 0.81,
+          "selectedCorpuscles": [
+            {
+              "id": "doc:news_article_1",
+              "relevanceScore": 0.89,
+              "selectionReason": "Recent AI healthcare developments"
+            },
+            {
+              "id": "doc:academic_paper_1",
+              "relevanceScore": 0.82,
+              "selectionReason": "New neural network architectures"
+            },
+            {
+              "id": "doc:academic_paper_2", 
+              "relevanceScore": 0.78,
+              "selectionReason": "Sustainable AI computing research"
+            }
+          ]
+        }
+      }
+    ],
+    "mappingRules": {
+      "zoomLevelSelection": {
+        "rules": [
+          {
+            "condition": "query contains ['summary', 'overview', 'introduction']",
+            "zoomLevel": "CommunityLevel",
+            "confidence": 0.85
+          },
+          {
+            "condition": "query contains ['full text', 'complete', 'entire document']",
+            "zoomLevel": "TextLevel", 
+            "confidence": 0.95
+          },
+          {
+            "condition": "query contains ['specific details', 'section', 'paragraph']",
+            "zoomLevel": "UnitLevel",
+            "confidence": 0.90
+          },
+          {
+            "condition": "query contains ['facts', 'names', 'numbers', 'citations']",
+            "zoomLevel": "EntityLevel",
+            "confidence": 0.88
+          },
+          {
+            "condition": "default exploratory query",
+            "zoomLevel": "CommunityLevel",
+            "confidence": 0.70
+          }
+        ]
+      },
+      "panDomainSelection": {
+        "topicMapping": {
+          "ai_keywords": ["AI", "artificial intelligence", "machine learning", "neural networks"],
+          "healthcare_keywords": ["healthcare", "medical", "diagnosis", "patient"],
+          "sustainability_keywords": ["green", "sustainable", "energy", "environment"],
+          "privacy_keywords": ["privacy", "data protection", "GDPR", "regulation"],
+          "technical_keywords": ["API", "documentation", "code", "programming"]
+        },
+        "temporalMapping": {
+          "recent_indicators": ["recent", "latest", "new", "current", "this year"],
+          "historical_indicators": ["historical", "past", "evolution", "development over time"],
+          "specific_periods": ["2024", "spring", "Q1", "last month"]
+        },
+        "geographicMapping": {
+          "regional_indicators": ["European", "EU", "California", "US", "North American"],
+          "global_indicators": ["worldwide", "international", "global", "across countries"]
+        }
+      },
+      "tiltProjectionSelection": {
+        "rules": [
+          {
+            "condition": "technical_documentation OR precise_terminology",
+            "projection": "KeywordProjection",
+            "confidence": 0.92
+          },
+          {
+            "condition": "conceptual_exploration OR research_similarity",
+            "projection": "EmbeddingProjection", 
+            "confidence": 0.87
+          },
+          {
+            "condition": "relationship_discovery OR citation_analysis",
+            "projection": "GraphProjection",
+            "confidence": 0.79
+          },
+          {
+            "condition": "temporal_analysis OR recent_developments",
+            "projection": "TemporalProjection",
+            "confidence": 0.84
+          },
+          {
+            "condition": "complex_query OR high_precision_needed",
+            "projection": "HybridProjection",
+            "confidence": 0.91
+          }
+        ]
+      }
+    },
+    "adaptiveMapping": {
+      "description": "How the system learns and adapts query-to-ZPT mappings based on user feedback",
+      "learningMechanisms": [
+        {
+          "mechanism": "click_through_feedback",
+          "description": "Adjust mappings based on which results users select",
+          "weight": 0.4
+        },
+        {
+          "mechanism": "session_analysis",
+          "description": "Learn from complete navigation sessions and query refinements",
+          "weight": 0.3
+        },
+        {
+          "mechanism": "explicit_feedback",
+          "description": "Direct user ratings and preference settings",
+          "weight": 0.3
+        }
+      ],
+      "adaptationExamples": [
+        {
+          "scenario": "User consistently selects TextLevel for 'overview' queries",
+          "adaptation": "Increase TextLevel confidence for this user's overview queries",
+          "confidenceAdjustment": "+0.15"
+        },
+        {
+          "scenario": "EmbeddingProjection performs poorly for technical queries",
+          "adaptation": "Decrease EmbeddingProjection preference for technical domain",
+          "confidenceAdjustment": "-0.10"
+        }
+      ]
+    },
+    "errorHandling": {
+      "ambiguousQueries": {
+        "strategy": "multiple_navigation_views",
+        "example": {
+          "query": "AI research",
+          "ambiguity": "Could be academic papers, news, or technical docs",
+          "resolution": "Create parallel navigation views with different pan domains",
+          "views": [
+            {"panDomain": "doc:AcademicDomain", "weight": 0.6},
+            {"panDomain": "doc:NewsDomain", "weight": 0.3},
+            {"panDomain": "doc:TechnicalDomain", "weight": 0.1}
+          ]
+        }
+      },
+      "noResults": {
+        "strategy": "progressive_relaxation",
+        "steps": [
+          "Relax temporal constraints",
+          "Broaden pan domain scope", 
+          "Lower zoom level for broader content",
+          "Switch to more inclusive tilt projection"
+        ]
+      },
+      "tooManyResults": {
+        "strategy": "progressive_refinement",
+        "steps": [
+          "Tighten temporal constraints",
+          "Narrow pan domain scope",
+          "Increase zoom level for more specific content",
+          "Apply stricter tilt projection filters"
+        ]
+      }
+    }
+  }
+}

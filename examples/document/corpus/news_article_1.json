@@ -1,0 +1,241 @@
+{
+  "id": "doc:news_article_1",
+  "title": "AI Revolution Transforms Healthcare Diagnosis",
+  "authors": [
+    {
+      "name": "Jessica Martinez",
+      "affiliation": "TechHealth Daily"
+    }
+  ],
+  "publishedDate": "2024-05-15",
+  "documentType": "news_article",
+  "keywords": ["artificial intelligence", "healthcare", "medical diagnosis", "machine learning", "MedNet"],
+  "abstract": "Artificial intelligence systems are revolutionizing medical diagnosis, with new research showing that machine learning algorithms can detect diseases with unprecedented accuracy, potentially saving millions of lives worldwide.",
+  "content": {
+    "sections": [
+      {
+        "title": "Breakthrough Technology Shows 95% Accuracy",
+        "content": "A consortium of leading medical institutions announced results...",
+        "level": 1
+      },
+      {
+        "title": "Key Developments",
+        "content": "Stanford Medical Center and Massachusetts General Hospital...",
+        "level": 2
+      },
+      {
+        "title": "Technology Details",
+        "content": "The MedNet system utilizes deep learning neural networks...",
+        "level": 2
+      },
+      {
+        "title": "Impact on Patient Care",
+        "content": "Early trial results show significant improvements...",
+        "level": 2
+      },
+      {
+        "title": "Industry Response",
+        "content": "Major healthcare providers are rapidly adopting AI diagnostic tools...",
+        "level": 2
+      },
+      {
+        "title": "Challenges and Concerns",
+        "content": "Despite promising results, experts identify several challenges...",
+        "level": 2
+      }
+    ],
+    "wordCount": 1654,
+    "readingTime": "PT7M"
+  },
+  "zptMapping": {
+    "zoomLevels": {
+      "EntityLevel": [
+        {
+          "type": "organization",
+          "value": "Stanford Medical Center",
+          "relevanceScore": 0.9
+        },
+        {
+          "type": "organization",
+          "value": "Massachusetts General Hospital",
+          "relevanceScore": 0.88
+        },
+        {
+          "type": "person",
+          "value": "Dr. Emily Roberts",
+          "relevanceScore": 0.82
+        },
+        {
+          "type": "concept",
+          "value": "MedNet",
+          "relevanceScore": 0.95
+        },
+        {
+          "type": "location",
+          "value": "San Francisco, CA",
+          "relevanceScore": 0.6
+        }
+      ],
+      "UnitLevel": [
+        {
+          "type": "paragraph",
+          "title": "Key Statistics",
+          "summary": "95% accuracy, 40% reduction in diagnostic errors, 60% faster treatment",
+          "wordCount": 89,
+          "relevanceScore": 0.92
+        },
+        {
+          "type": "section",
+          "title": "Technology Details",
+          "summary": "MedNet system features and capabilities",
+          "wordCount": 167,
+          "relevanceScore": 0.88
+        },
+        {
+          "type": "section",
+          "title": "Industry Response",
+          "summary": "Healthcare provider adoption and market projections",
+          "wordCount": 134,
+          "relevanceScore": 0.85
+        }
+      ],
+      "TextLevel": {
+        "fullText": true,
+        "summary": "News article reporting on breakthrough AI technology for medical diagnosis showing 95% accuracy and significant improvements in patient care across major healthcare institutions.",
+        "keyPoints": [
+          "AI system achieves 95% accuracy in disease detection",
+          "40% reduction in diagnostic errors",
+          "Major healthcare providers adopting the technology",
+          "Challenges include regulatory approval and data privacy",
+          "Economic impact projected at $150 billion savings by 2030"
+        ]
+      },
+      "CommunityLevel": {
+        "cluster": "ai_healthcare_news",
+        "relatedDocuments": ["doc:academic_paper_2"],
+        "topicSummary": "Current developments in AI applications to healthcare and medical diagnosis"
+      },
+      "CorpusLevel": {
+        "corpusContribution": "Provides current events perspective on AI healthcare developments",
+        "significance": 0.75
+      }
+    },
+    "panDomains": {
+      "topicDomains": [
+        {
+          "domain": "news",
+          "coverage": 1.0,
+          "specificity": "focused"
+        },
+        {
+          "domain": "healthcare",
+          "coverage": 0.95,
+          "specificity": "focused"
+        },
+        {
+          "domain": "ai_technology",
+          "coverage": 0.88,
+          "specificity": "focused"
+        }
+      ],
+      "temporalDomains": [
+        {
+          "period": "2024",
+          "relevance": 1.0
+        },
+        {
+          "period": "modern_ai_era",
+          "relevance": 0.85
+        }
+      ],
+      "entityDomains": [
+        {
+          "entityType": "organization",
+          "entities": ["Stanford Medical Center", "Massachusetts General Hospital", "Kaiser Permanente", "Mayo Clinic"]
+        },
+        {
+          "entityType": "person",
+          "entities": ["Jessica Martinez", "Dr. Emily Roberts", "Dr. Maria Gonzalez"]
+        },
+        {
+          "entityType": "location",
+          "entities": ["San Francisco, CA"]
+        }
+      ]
+    },
+    "tiltProjections": {
+      "keywordProjection": {
+        "primaryTerms": [
+          {
+            "term": "AI",
+            "frequency": 28,
+            "tfidf": 0.89
+          },
+          {
+            "term": "healthcare",
+            "frequency": 19,
+            "tfidf": 0.83
+          },
+          {
+            "term": "diagnosis",
+            "frequency": 15,
+            "tfidf": 0.78
+          }
+        ],
+        "effectiveness": 0.86
+      },
+      "embeddingProjection": {
+        "vectorSpace": "news_articles_384d",
+        "dimensions": 384,
+        "similarityThreshold": 0.65,
+        "effectiveness": 0.79
+      },
+      "graphProjection": {
+        "citationNetwork": {
+          "incomingCitations": 0,
+          "outgoingCitations": 0,
+          "citationClusters": ["healthcare_news"]
+        },
+        "topicNetwork": {
+          "centralNodes": ["AI", "healthcare", "diagnosis"],
+          "connectivity": 0.72
+        },
+        "effectiveness": 0.69
+      },
+      "temporalProjection": {
+        "chronologicalOrder": 3,
+        "timelineRelevance": 0.95,
+        "effectiveness": 0.88
+      }
+    },
+    "optimizationScores": {
+      "overall": 0.81,
+      "zoomRelevance": 0.85,
+      "panCoverage": 0.79,
+      "tiltEffectiveness": 0.81
+    }
+  },
+  "relations": {
+    "citations": [],
+    "topicalSimilarity": [
+      {
+        "document": "doc:academic_paper_1",
+        "similarity": 0.52
+      },
+      {
+        "document": "doc:academic_paper_2",
+        "similarity": 0.41
+      }
+    ]
+  },
+  "access": {
+    "complexity": "beginner",
+    "audience": ["general_public", "practitioners"],
+    "language": "en",
+    "accessibility": {
+      "hasAltText": false,
+      "hasTranscripts": false,
+      "screenReaderFriendly": true
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "id": "doc:policy_document_1",
+  "title": "Digital Privacy Protection Act - Policy Framework",
+  "authors": [
+    {
+      "name": "European Data Protection Board",
+      "affiliation": "European Union"
+    }
+  ],
+  "publishedDate": "2024-01-01",
+  "documentType": "policy_document",
+  "keywords": ["digital privacy", "GDPR", "AI regulation", "data protection", "biometric data", "IoT"],
+  "abstract": "The Digital Privacy Protection Act (DPPA) establishes comprehensive privacy rights for individuals in the digital age, extending beyond GDPR provisions to address emerging technologies including artificial intelligence, biometric systems, and Internet of Things devices.",
+  "content": {
+    "sections": [
+      {
+        "title": "Executive Summary",
+        "content": "The Digital Privacy Protection Act establishes comprehensive privacy rights...",
+        "level": 1
+      },
+      {
+        "title": "Scope and Applicability",
+        "content": "Covered entities and jurisdictional reach...",
+        "level": 1
+      },
+      {
+        "title": "Key Provisions",
+        "content": "Fundamental rights, AI-specific protections, biometric safeguards, IoT standards...",
+        "level": 1
+      },
+      {
+        "title": "Enforcement Mechanisms",
+        "content": "Regulatory authority, penalties, individual remedies...",
+        "level": 1
+      },
+      {
+        "title": "Compliance Requirements",
+        "content": "Implementation timeline, mandatory assessments, documentation...",
+        "level": 1
+      },
+      {
+        "title": "Sectoral Applications",
+        "content": "Healthcare, financial services, education, employment applications...",
+        "level": 1
+      }
+    ],
+    "wordCount": 3247,
+    "readingTime": "PT16M"
+  },
+  "zptMapping": {
+    "zoomLevels": {
+      "EntityLevel": [
+        {
+          "type": "organization",
+          "value": "European Data Protection Board",
+          "relevanceScore": 0.95
+        },
+        {
+          "type": "concept",
+          "value": "DPPA",
+          "relevanceScore": 0.98
+        },
+        {
+          "type": "concept",
+          "value": "GDPR",
+          "relevanceScore": 0.85
+        },
+        {
+          "type": "organization",
+          "value": "European Digital Privacy Agency",
+          "relevanceScore": 0.88
+        }
+      ],
+      "UnitLevel": [
+        {
+          "type": "section",
+          "title": "Key Provisions",
+          "summary": "Fundamental rights, AI protections, biometric safeguards, IoT standards",
+          "wordCount": 567,
+          "relevanceScore": 0.95
+        },
+        {
+          "type": "section",
+          "title": "Enforcement Mechanisms",
+          "summary": "Regulatory authority, penalties up to 6% of turnover, individual remedies",
+          "wordCount": 423,
+          "relevanceScore": 0.92
+        },
+        {
+          "type": "section",
+          "title": "Compliance Requirements",
+          "summary": "18-month implementation timeline, mandatory assessments, documentation",
+          "wordCount": 389,
+          "relevanceScore": 0.88
+        }
+      ],
+      "TextLevel": {
+        "fullText": true,
+        "summary": "Comprehensive privacy legislation extending GDPR to cover AI, biometrics, and IoT with enhanced enforcement mechanisms and sectoral applications.",
+        "keyPoints": [
+          "Extends GDPR to cover AI, biometric, and IoT technologies",
+          "Establishes fundamental digital rights including algorithmic transparency",
+          "Creates European Digital Privacy Agency for enforcement",
+          "Penalties up to 6% of global annual turnover",
+          "18-month compliance timeline with phased implementation",
+          "Specific provisions for healthcare, finance, education, and employment"
+        ]
+      },
+      "CommunityLevel": {
+        "cluster": "privacy_regulation",
+        "relatedDocuments": ["doc:news_article_1"],
+        "topicSummary": "Digital privacy and data protection regulatory framework for emerging technologies"
+      },
+      "CorpusLevel": {
+        "corpusContribution": "Provides regulatory perspective on digital privacy and AI governance",
+        "significance": 0.89
+      }
+    },
+    "panDomains": {
+      "topicDomains": [
+        {
+          "domain": "policy",
+          "coverage": 1.0,
+          "specificity": "specialized"
+        },
+        {
+          "domain": "privacy",
+          "coverage": 0.95,
+          "specificity": "specialized"
+        },
+        {
+          "domain": "ai_technology",
+          "coverage": 0.75,
+          "specificity": "focused"
+        }
+      ],
+      "temporalDomains": [
+        {
+          "period": "2024",
+          "relevance": 1.0
+        },
+        {
+          "period": "modern_ai_era",
+          "relevance": 0.88
+        }
+      ],
+      "entityDomains": [
+        {
+          "entityType": "organization",
+          "entities": ["European Data Protection Board", "European Digital Privacy Agency", "European Union"]
+        }
+      ]
+    },
+    "tiltProjections": {
+      "keywordProjection": {
+        "primaryTerms": [
+          {
+            "term": "privacy",
+            "frequency": 67,
+            "tfidf": 0.91
+          },
+          {
+            "term": "data protection",
+            "frequency": 34,
+            "tfidf": 0.87
+          },
+          {
+            "term": "AI",
+            "frequency": 28,
+            "tfidf": 0.83
+          }
+        ],
+        "effectiveness": 0.89
+      },
+      "embeddingProjection": {
+        "vectorSpace": "legal_docs_768d",
+        "dimensions": 768,
+        "similarityThreshold": 0.8,
+        "effectiveness": 0.86
+      },
+      "graphProjection": {
+        "citationNetwork": {
+          "incomingCitations": 0,
+          "outgoingCitations": 0,
+          "citationClusters": ["privacy_regulation", "eu_legislation"]
+        },
+        "topicNetwork": {
+          "centralNodes": ["privacy", "GDPR", "AI regulation"],
+          "connectivity": 0.82
+        },
+        "effectiveness": 0.79
+      },
+      "temporalProjection": {
+        "chronologicalOrder": 1,
+        "timelineRelevance": 0.92,
+        "effectiveness": 0.81
+      }
+    },
+    "optimizationScores": {
+      "overall": 0.86,
+      "zoomRelevance": 0.90,
+      "panCoverage": 0.84,
+      "tiltEffectiveness": 0.85
+    }
+  },
+  "relations": {
+    "citations": [],
+    "topicalSimilarity": [
+      {
+        "document": "doc:news_article_1",
+        "similarity": 0.38
+      }
+    ]
+  },
+  "access": {
+    "complexity": "advanced",
+    "audience": ["policymakers", "practitioners"],
+    "language": "en",
+    "accessibility": {
+      "hasAltText": false,
+      "hasTranscripts": false,
+      "screenReaderFriendly": true
+    }
+  }
+}

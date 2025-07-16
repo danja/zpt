@@ -1,0 +1,483 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://purl.org/stuff/zpt/examples/document/schemas/document-metadata",
+  "title": "ZPT Document Metadata Schema",
+  "description": "JSON schema for document metadata in ZPT navigation system",
+  "type": "object",
+  "required": ["id", "title", "documentType", "zptMapping"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the document"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the document"
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "affiliation": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "publishedDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date in YYYY-MM-DD format"
+    },
+    "documentType": {
+      "type": "string",
+      "enum": ["academic_paper", "technical_documentation", "news_article", "policy_document", "blog_post", "report"],
+      "description": "Type of document"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Keywords and tags associated with the document"
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Abstract or summary of the document"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 6
+              }
+            },
+            "required": ["title", "content", "level"]
+          }
+        },
+        "wordCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "readingTime": {
+          "type": "string",
+          "pattern": "^PT([0-9]+H)?([0-9]+M)?([0-9]+S)?$",
+          "description": "Estimated reading time in ISO 8601 duration format"
+        }
+      }
+    },
+    "zptMapping": {
+      "type": "object",
+      "description": "ZPT-specific navigation metadata",
+      "required": ["zoomLevels", "panDomains", "tiltProjections"],
+      "properties": {
+        "zoomLevels": {
+          "type": "object",
+          "properties": {
+            "EntityLevel": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["person", "organization", "concept", "location", "citation", "keyword"]
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "integer"
+                      },
+                      "end": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "relevanceScore": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            },
+            "UnitLevel": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["abstract", "introduction", "section", "paragraph", "conclusion"]
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "wordCount": {
+                    "type": "integer"
+                  },
+                  "relevanceScore": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            },
+            "TextLevel": {
+              "type": "object",
+              "properties": {
+                "fullText": {
+                  "type": "boolean"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "keyPoints": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "CommunityLevel": {
+              "type": "object",
+              "properties": {
+                "cluster": {
+                  "type": "string",
+                  "description": "Thematic cluster this document belongs to"
+                },
+                "relatedDocuments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "topicSummary": {
+                  "type": "string"
+                }
+              }
+            },
+            "CorpusLevel": {
+              "type": "object",
+              "properties": {
+                "corpusContribution": {
+                  "type": "string"
+                },
+                "significance": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        },
+        "panDomains": {
+          "type": "object",
+          "properties": {
+            "topicDomains": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "enum": ["academic", "technical", "news", "policy", "healthcare", "ai_technology", "sustainability", "privacy"]
+                  },
+                  "coverage": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "specificity": {
+                    "type": "string",
+                    "enum": ["broad", "focused", "specialized"]
+                  }
+                }
+              }
+            },
+            "temporalDomains": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "period": {
+                    "type": "string"
+                  },
+                  "relevance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            },
+            "entityDomains": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "entityType": {
+                    "type": "string",
+                    "enum": ["person", "organization", "location", "event"]
+                  },
+                  "entities": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tiltProjections": {
+          "type": "object",
+          "properties": {
+            "keywordProjection": {
+              "type": "object",
+              "properties": {
+                "primaryTerms": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "term": {
+                        "type": "string"
+                      },
+                      "frequency": {
+                        "type": "integer"
+                      },
+                      "tfidf": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "effectiveness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "embeddingProjection": {
+              "type": "object",
+              "properties": {
+                "vectorSpace": {
+                  "type": "string"
+                },
+                "dimensions": {
+                  "type": "integer"
+                },
+                "similarityThreshold": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "effectiveness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "graphProjection": {
+              "type": "object",
+              "properties": {
+                "citationNetwork": {
+                  "type": "object",
+                  "properties": {
+                    "incomingCitations": {
+                      "type": "integer"
+                    },
+                    "outgoingCitations": {
+                      "type": "integer"
+                    },
+                    "citationClusters": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "topicNetwork": {
+                  "type": "object",
+                  "properties": {
+                    "centralNodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "connectivity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  }
+                },
+                "effectiveness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "temporalProjection": {
+              "type": "object",
+              "properties": {
+                "chronologicalOrder": {
+                  "type": "integer"
+                },
+                "timelineRelevance": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "effectiveness": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        },
+        "optimizationScores": {
+          "type": "object",
+          "properties": {
+            "overall": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "zoomRelevance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "panCoverage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "tiltEffectiveness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "object",
+      "properties": {
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["cites", "citedBy", "related"]
+              },
+              "strength": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "topicalSimilarity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "document": {
+                "type": "string"
+              },
+              "similarity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "access": {
+      "type": "object",
+      "properties": {
+        "complexity": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "expert"]
+        },
+        "audience": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["general_public", "students", "researchers", "practitioners", "policymakers", "developers"]
+          }
+        },
+        "language": {
+          "type": "string",
+          "default": "en"
+        },
+        "accessibility": {
+          "type": "object",
+          "properties": {
+            "hasAltText": {
+              "type": "boolean"
+            },
+            "hasTranscripts": {
+              "type": "boolean"
+            },
+            "screenReaderFriendly": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

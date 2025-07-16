@@ -1,0 +1,303 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix zpt: <http://purl.org/stuff/zpt/> .
+@prefix ragno: <http://purl.org/stuff/ragno/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doc: <http://purl.org/stuff/zpt/examples/document/> .
+
+# Document-Specific ZPT Ontology Extension
+doc: a owl:Ontology ;
+    dcterms:title "ZPT Document Navigation Schema"@en ;
+    dcterms:description "Extension of ZPT ontology for document collection navigation"@en ;
+    owl:imports <http://purl.org/stuff/zpt/> ;
+    owl:versionInfo "1.0.0" .
+
+# Document-Specific Classes
+
+## Document Elements (mapping to ZPT Zoom Levels)
+doc:DocumentEntity a owl:Class ;
+    rdfs:subClassOf ragno:Entity ;
+    rdfs:label "Document Entity"@en ;
+    rdfs:comment "Individual entities within documents (names, concepts, citations)"@en ;
+    zpt:correspondsToZoomLevel zpt:EntityLevel .
+
+doc:DocumentUnit a owl:Class ;
+    rdfs:subClassOf ragno:Unit ;
+    rdfs:label "Document Unit"@en ;
+    rdfs:comment "Semantic units within documents (paragraphs, sections, abstracts)"@en ;
+    zpt:correspondsToZoomLevel zpt:UnitLevel .
+
+doc:DocumentText a owl:Class ;
+    rdfs:subClassOf ragno:TextElement ;
+    rdfs:label "Document Text"@en ;
+    rdfs:comment "Complete document instances"@en ;
+    zpt:correspondsToZoomLevel zpt:TextLevel .
+
+doc:DocumentCluster a owl:Class ;
+    rdfs:subClassOf ragno:CommunityElement ;
+    rdfs:label "Document Cluster"@en ;
+    rdfs:comment "Thematically related document collections"@en ;
+    zpt:correspondsToZoomLevel zpt:CommunityLevel .
+
+doc:DocumentCorpus a owl:Class ;
+    rdfs:subClassOf ragno:Corpus ;
+    rdfs:label "Document Corpus"@en ;
+    rdfs:comment "Complete document collection with metadata"@en ;
+    zpt:correspondsToZoomLevel zpt:CorpusLevel .
+
+# Document-Specific Navigable Corpuscles
+doc:NavigableDocument a owl:Class ;
+    rdfs:subClassOf zpt:NavigableCorpuscle ;
+    rdfs:label "Navigable Document"@en ;
+    rdfs:comment "A document enhanced with ZPT navigation metadata"@en .
+
+doc:NavigableDocumentCollection a owl:Class ;
+    rdfs:subClassOf zpt:NavigableCorpuscle ;
+    rdfs:label "Navigable Document Collection"@en ;
+    rdfs:comment "A collection of related documents optimized for navigation"@en .
+
+# Document Types
+doc:AcademicPaper a owl:Class ;
+    rdfs:subClassOf doc:NavigableDocument ;
+    rdfs:label "Academic Paper"@en ;
+    rdfs:comment "Scholarly research publication"@en .
+
+doc:TechnicalDocumentation a owl:Class ;
+    rdfs:subClassOf doc:NavigableDocument ;
+    rdfs:label "Technical Documentation"@en ;
+    rdfs:comment "Technical reference material and API documentation"@en .
+
+doc:NewsArticle a owl:Class ;
+    rdfs:subClassOf doc:NavigableDocument ;
+    rdfs:label "News Article"@en ;
+    rdfs:comment "News or journalistic content"@en .
+
+doc:PolicyDocument a owl:Class ;
+    rdfs:subClassOf doc:NavigableDocument ;
+    rdfs:label "Policy Document"@en ;
+    rdfs:comment "Legal, regulatory, or policy content"@en .
+
+# Document-Specific Pan Domains
+doc:AcademicDomain a zpt:PanDomain ;
+    rdfs:label "Academic Domain"@en ;
+    rdfs:comment "Scope focused on academic and research content"@en .
+
+doc:TechnicalDomain a zpt:PanDomain ;
+    rdfs:label "Technical Domain"@en ;
+    rdfs:comment "Scope focused on technical and engineering content"@en .
+
+doc:NewsDomain a zpt:PanDomain ;
+    rdfs:label "News Domain"@en ;
+    rdfs:comment "Scope focused on current events and news content"@en .
+
+doc:PolicyDomain a zpt:PanDomain ;
+    rdfs:label "Policy Domain"@en ;
+    rdfs:comment "Scope focused on legal and regulatory content"@en .
+
+doc:HealthcareDomain a zpt:PanDomain ;
+    rdfs:label "Healthcare Domain"@en ;
+    rdfs:comment "Scope focused on medical and health-related content"@en .
+
+doc:AITechnologyDomain a zpt:PanDomain ;
+    rdfs:label "AI Technology Domain"@en ;
+    rdfs:comment "Scope focused on artificial intelligence and machine learning"@en .
+
+doc:SustainabilityDomain a zpt:PanDomain ;
+    rdfs:label "Sustainability Domain"@en ;
+    rdfs:comment "Scope focused on environmental and sustainability topics"@en .
+
+doc:PrivacyDomain a zpt:PanDomain ;
+    rdfs:label "Privacy Domain"@en ;
+    rdfs:comment "Scope focused on privacy and data protection"@en .
+
+# Temporal Domains for Documents
+doc:Recent2024 a zpt:TemporalDomain ;
+    rdfs:label "Recent 2024"@en ;
+    rdfs:comment "Documents from 2024"@en ;
+    dcterms:temporal "2024" .
+
+doc:EarlyAIEra a zpt:TemporalDomain ;
+    rdfs:label "Early AI Era"@en ;
+    rdfs:comment "Documents from the early development of AI (pre-2020)"@en ;
+    dcterms:temporal "2000-2019" .
+
+doc:ModernAIEra a zpt:TemporalDomain ;
+    rdfs:label "Modern AI Era"@en ;
+    rdfs:comment "Documents from the transformer and large language model era (2020+)"@en ;
+    dcterms:temporal "2020+" .
+
+# Document-Specific Properties
+
+## Content Structure Properties
+doc:hasSection a owl:ObjectProperty ;
+    rdfs:domain doc:DocumentText ;
+    rdfs:range doc:DocumentUnit ;
+    rdfs:label "has section"@en ;
+    rdfs:comment "Links a document to its constituent sections"@en .
+
+doc:hasAbstract a owl:ObjectProperty ;
+    rdfs:domain doc:DocumentText ;
+    rdfs:range doc:DocumentUnit ;
+    rdfs:label "has abstract"@en ;
+    rdfs:comment "Links a document to its abstract"@en .
+
+doc:hasKeyword a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "has keyword"@en ;
+    rdfs:comment "Keywords associated with the document"@en .
+
+doc:hasAuthor a owl:ObjectProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range foaf:Person ;
+    rdfs:label "has author"@en ;
+    rdfs:comment "Author of the document"@en .
+
+doc:publishedDate a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "published date"@en ;
+    rdfs:comment "Publication date of the document"@en .
+
+doc:documentType a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "document type"@en ;
+    rdfs:comment "Type or category of the document"@en .
+
+## Citation and Reference Properties
+doc:cites a owl:ObjectProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range doc:NavigableDocument ;
+    rdfs:label "cites"@en ;
+    rdfs:comment "One document cites another"@en .
+
+doc:citedBy a owl:ObjectProperty ;
+    owl:inverseOf doc:cites ;
+    rdfs:label "cited by"@en ;
+    rdfs:comment "Document is cited by another"@en .
+
+doc:relatedTo a owl:ObjectProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range doc:NavigableDocument ;
+    rdfs:label "related to"@en ;
+    rdfs:comment "Topical relationship between documents"@en .
+
+## Navigation-Specific Properties
+doc:readingTime a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:duration ;
+    rdfs:label "reading time"@en ;
+    rdfs:comment "Estimated reading time for the document"@en .
+
+doc:complexityLevel a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "complexity level"@en ;
+    rdfs:comment "Difficulty level: beginner, intermediate, advanced, expert"@en .
+
+doc:primaryAudience a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "primary audience"@en ;
+    rdfs:comment "Intended audience for the document"@en .
+
+## Content Analysis Properties
+doc:topicScore a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:float ;
+    rdfs:label "topic score"@en ;
+    rdfs:comment "Relevance score for a specific topic (0.0-1.0)"@en .
+
+doc:recencyScore a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:float ;
+    rdfs:label "recency score"@en ;
+    rdfs:comment "Recency relevance score (0.0-1.0)"@en .
+
+doc:authorityScore a owl:DatatypeProperty ;
+    rdfs:domain doc:NavigableDocument ;
+    rdfs:range xsd:float ;
+    rdfs:label "authority score"@en ;
+    rdfs:comment "Authority/credibility score (0.0-1.0)"@en .
+
+# Individuals - Example Document Navigation Views
+
+## Sample Navigation Views for Different Use Cases
+doc:academicResearchView a zpt:NavigationView ;
+    rdfs:label "Academic Research View"@en ;
+    rdfs:comment "Navigation view optimized for academic research workflows"@en ;
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:CommunityLevel
+    ] ;
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:AcademicDomain
+    ] ;
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:EmbeddingProjection
+    ] .
+
+doc:technicalDocumentationView a zpt:NavigationView ;
+    rdfs:label "Technical Documentation View"@en ;
+    rdfs:comment "Navigation view for technical documentation access"@en ;
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:UnitLevel
+    ] ;
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:TechnicalDomain
+    ] ;
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:KeywordProjection
+    ] .
+
+doc:currentEventsView a zpt:NavigationView ;
+    rdfs:label "Current Events View"@en ;
+    rdfs:comment "Navigation view for news and current events"@en ;
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:TextLevel
+    ] ;
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:NewsDomain
+    ] ;
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:TemporalProjection
+    ] .
+
+## Sample Navigable Corpuscles with Optimization Scores
+doc:aiHealthcareCorpuscle a doc:NavigableDocumentCollection ;
+    rdfs:label "AI in Healthcare Collection"@en ;
+    skos:prefLabel "AI Healthcare Knowledge Corpuscle" ;
+    zpt:optimizationScore 0.89 ;
+    zpt:zoomRelevance 0.92 ;
+    zpt:panCoverage 0.85 ;
+    zpt:tiltEffectiveness 0.90 .
+
+doc:sustainableComputingCorpuscle a doc:NavigableDocumentCollection ;
+    rdfs:label "Sustainable Computing Collection"@en ;
+    skos:prefLabel "Green Computing Knowledge Corpuscle" ;
+    zpt:optimizationScore 0.82 ;
+    zpt:zoomRelevance 0.88 ;
+    zpt:panCoverage 0.78 ;
+    zpt:tiltEffectiveness 0.81 .
+
+doc:privacyPolicyCorpuscle a doc:NavigableDocumentCollection ;
+    rdfs:label "Privacy Policy Collection"@en ;
+    skos:prefLabel "Digital Privacy Knowledge Corpuscle" ;
+    zpt:optimizationScore 0.86 ;
+    zpt:zoomRelevance 0.90 ;
+    zpt:panCoverage 0.83 ;
+    zpt:tiltEffectiveness 0.85 .

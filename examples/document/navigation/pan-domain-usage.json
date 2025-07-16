@@ -1,0 +1,226 @@
+{
+  "panDomainUsageExamples": {
+    "description": "Practical examples of how pan domains filter and scope document collections in ZPT navigation",
+    "lastUpdated": "2024-06-02",
+    "examples": [
+      {
+        "useCase": "Academic Research Query",
+        "query": "Find recent research on neural networks",
+        "recommendedPanDomain": {
+          "primary": "doc:AIDomain",
+          "secondary": "doc:AcademicInstitutionDomain",
+          "temporal": "doc:Recent2024Domain"
+        },
+        "expectedResults": [
+          "doc:academic_paper_1",
+          "doc:academic_paper_2"
+        ],
+        "filteringEffect": {
+          "documentsConsidered": 5,
+          "documentsSelected": 2,
+          "topicRelevance": 0.94,
+          "temporalRelevance": 1.0
+        }
+      },
+      {
+        "useCase": "Healthcare Technology News",
+        "query": "Latest developments in AI for healthcare",
+        "recommendedPanDomain": {
+          "primary": "doc:AIHealthcare2024Domain"
+        },
+        "expectedResults": [
+          "doc:news_article_1"
+        ],
+        "filteringEffect": {
+          "documentsConsidered": 5,
+          "documentsSelected": 1,
+          "topicRelevance": 0.96,
+          "temporalRelevance": 0.95
+        }
+      },
+      {
+        "useCase": "European Privacy Regulation",
+        "query": "EU digital privacy laws and AI regulation",
+        "recommendedPanDomain": {
+          "primary": "doc:EUPrivacyRegulationDomain",
+          "geographic": "doc:EuropeanUnionDomain"
+        },
+        "expectedResults": [
+          "doc:policy_document_1"
+        ],
+        "filteringEffect": {
+          "documentsConsidered": 5,
+          "documentsSelected": 1,
+          "topicRelevance": 0.98,
+          "geographicRelevance": 0.96
+        }
+      },
+      {
+        "useCase": "Sustainability in Technology",
+        "query": "Green computing and sustainable technology practices",
+        "recommendedPanDomain": {
+          "primary": "doc:SustainabilityDomain",
+          "entity": "doc:AcademicInstitutionDomain"
+        },
+        "expectedResults": [
+          "doc:academic_paper_2"
+        ],
+        "filteringEffect": {
+          "documentsConsidered": 5,
+          "documentsSelected": 1,
+          "topicRelevance": 0.92,
+          "entityRelevance": 0.85
+        }
+      },
+      {
+        "useCase": "Technical Documentation Search",
+        "query": "API documentation for navigation systems",
+        "recommendedPanDomain": {
+          "primary": "doc:TechnicalDomain",
+          "entity": "doc:TechnologyIndustryDomain"
+        },
+        "expectedResults": [
+          "doc:technical_doc_1"
+        ],
+        "filteringEffect": {
+          "documentsConsidered": 5,
+          "documentsSelected": 1,
+          "topicRelevance": 1.0,
+          "entityRelevance": 0.78
+        }
+      }
+    ],
+    "domainCombinationStrategies": {
+      "intersectional": {
+        "description": "Select documents that belong to ALL specified domains",
+        "example": "doc:AIDomain ∩ doc:HealthcareDomain ∩ doc:Recent2024Domain",
+        "useWhen": "Need highly specific, focused results",
+        "expectedSelectivity": "high"
+      },
+      "union": {
+        "description": "Select documents that belong to ANY of the specified domains",
+        "example": "doc:AIDomain ∪ doc:SustainabilityDomain",
+        "useWhen": "Need broader coverage across related topics",
+        "expectedSelectivity": "low"
+      },
+      "weighted": {
+        "description": "Score documents based on weighted membership in multiple domains",
+        "example": "0.7 * doc:AIDomain + 0.3 * doc:HealthcareDomain",
+        "useWhen": "Need nuanced relevance scoring",
+        "expectedSelectivity": "medium"
+      },
+      "hierarchical": {
+        "description": "Start with broad domain, progressively narrow based on additional criteria",
+        "example": "doc:AIDomain → doc:HealthcareDomain → doc:Recent2024Domain",
+        "useWhen": "Exploratory research with progressive focusing",
+        "expectedSelectivity": "adaptive"
+      }
+    },
+    "temporalFiltering": {
+      "recencyBoost": {
+        "description": "Recent documents get higher relevance scores",
+        "formula": "baseScore * (1 + recencyWeight * temporalRelevance)",
+        "example": {
+          "baseScore": 0.8,
+          "recencyWeight": 0.2,
+          "temporalRelevance": 1.0,
+          "finalScore": 1.0
+        }
+      },
+      "periodicSelection": {
+        "description": "Select documents from specific time periods",
+        "examples": [
+          {
+            "period": "Q1 2024",
+            "domain": "doc:Early2024Domain",
+            "documentCount": 2,
+            "averageRelevance": 0.93
+          },
+          {
+            "period": "Spring 2024",
+            "domain": "doc:Spring2024Domain", 
+            "documentCount": 3,
+            "averageRelevance": 0.89
+          }
+        ]
+      }
+    },
+    "geospatialFiltering": {
+      "regionSpecific": {
+        "description": "Filter documents by geographic relevance",
+        "examples": [
+          {
+            "region": "California",
+            "domain": "doc:CaliforniaDomain",
+            "documents": ["doc:academic_paper_1", "doc:news_article_1"],
+            "coverage": "state-level"
+          },
+          {
+            "region": "European Union", 
+            "domain": "doc:EuropeanUnionDomain",
+            "documents": ["doc:policy_document_1"],
+            "coverage": "supranational"
+          }
+        ]
+      },
+      "proximityBased": {
+        "description": "Select documents based on geographic proximity",
+        "implementation": "Calculate distance from query location, apply distance-based weighting",
+        "useCase": "Local news, regional policies, nearby institutions"
+      }
+    },
+    "entityFiltering": {
+      "institutionFocus": {
+        "description": "Filter by specific institutions or organizations",
+        "examples": [
+          {
+            "institution": "University of California",
+            "domain": "doc:AcademicInstitutionDomain",
+            "documents": ["doc:academic_paper_1"],
+            "entityRole": "research_institution"
+          },
+          {
+            "institution": "Stanford Medical Center",
+            "domain": "doc:HealthcareInstitutionDomain",
+            "documents": ["doc:news_article_1"],
+            "entityRole": "healthcare_provider"
+          }
+        ]
+      },
+      "authorFocus": {
+        "description": "Filter by document authors or research groups",
+        "implementation": "Match author names, affiliations, or research group memberships",
+        "useCase": "Following specific researchers, institutional output analysis"
+      }
+    },
+    "adaptiveFiltering": {
+      "queryEvolution": {
+        "description": "Pan domains adapt based on user navigation behavior",
+        "stages": [
+          {
+            "stage": 1,
+            "domain": "doc:AIDomain",
+            "scope": "broad",
+            "documentCount": 4
+          },
+          {
+            "stage": 2,
+            "domain": "doc:AIHealthcare2024Domain",
+            "scope": "focused",
+            "documentCount": 1,
+            "reason": "User showed interest in healthcare applications"
+          }
+        ]
+      },
+      "contextualRefinement": {
+        "description": "Refine pan domains based on query context and user profile",
+        "factors": [
+          "user expertise level",
+          "previous queries",
+          "document interaction patterns",
+          "time constraints"
+        ]
+      }
+    }
+  }
+}

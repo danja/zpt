@@ -1,0 +1,215 @@
+{
+  "id": "doc:technical_doc_1",
+  "title": "ZPT API Documentation",
+  "authors": [
+    {
+      "name": "ZPT Development Team",
+      "affiliation": "ZPT Project"
+    }
+  ],
+  "publishedDate": "2024-06-01",
+  "documentType": "technical_documentation",
+  "keywords": ["API", "documentation", "ZPT", "knowledge navigation", "REST", "programming"],
+  "abstract": "The ZPT API provides programmatic access to knowledge navigation capabilities using the Zoom-Pan-Tilt paradigm. This RESTful API enables applications to dynamically select and retrieve optimal knowledge subsets based on query requirements.",
+  "content": {
+    "sections": [
+      {
+        "title": "Overview",
+        "content": "The ZPT API provides programmatic access to knowledge navigation capabilities...",
+        "level": 1
+      },
+      {
+        "title": "Quick Start",
+        "content": "Installation and basic usage examples...",
+        "level": 1
+      },
+      {
+        "title": "API Reference",
+        "content": "Detailed API endpoint documentation...",
+        "level": 1
+      },
+      {
+        "title": "Navigation Parameters",
+        "content": "Description of zoom, pan, and tilt parameters...",
+        "level": 1
+      },
+      {
+        "title": "Error Handling",
+        "content": "Standard HTTP status codes and error responses...",
+        "level": 1
+      },
+      {
+        "title": "Examples",
+        "content": "Academic research and legal document discovery examples...",
+        "level": 1
+      }
+    ],
+    "wordCount": 2156,
+    "readingTime": "PT12M"
+  },
+  "zptMapping": {
+    "zoomLevels": {
+      "EntityLevel": [
+        {
+          "type": "concept",
+          "value": "ZPT API",
+          "relevanceScore": 1.0
+        },
+        {
+          "type": "concept",
+          "value": "REST",
+          "relevanceScore": 0.85
+        },
+        {
+          "type": "concept",
+          "value": "endpoints",
+          "relevanceScore": 0.82
+        },
+        {
+          "type": "concept",
+          "value": "authentication",
+          "relevanceScore": 0.78
+        }
+      ],
+      "UnitLevel": [
+        {
+          "type": "section",
+          "title": "Quick Start",
+          "summary": "Installation and basic usage for getting started with the API",
+          "wordCount": 245,
+          "relevanceScore": 0.95
+        },
+        {
+          "type": "section",
+          "title": "API Reference",
+          "summary": "Detailed documentation of all API endpoints and parameters",
+          "wordCount": 687,
+          "relevanceScore": 0.98
+        },
+        {
+          "type": "section",
+          "title": "Navigation Parameters",
+          "summary": "Explanation of zoom levels, pan domains, and tilt projections",
+          "wordCount": 456,
+          "relevanceScore": 0.92
+        }
+      ],
+      "TextLevel": {
+        "fullText": true,
+        "summary": "Comprehensive API documentation for the ZPT knowledge navigation system, including authentication, endpoints, parameters, and usage examples.",
+        "keyPoints": [
+          "RESTful API for ZPT knowledge navigation",
+          "Support for zoom, pan, and tilt navigation parameters",
+          "Authentication via API keys",
+          "Rate limiting and error handling",
+          "Code examples in multiple languages"
+        ]
+      },
+      "CommunityLevel": {
+        "cluster": "technical_documentation",
+        "relatedDocuments": ["doc:academic_paper_1"],
+        "topicSummary": "Technical documentation for implementing ZPT navigation systems"
+      },
+      "CorpusLevel": {
+        "corpusContribution": "Provides implementation guidance for ZPT navigation systems",
+        "significance": 0.88
+      }
+    },
+    "panDomains": {
+      "topicDomains": [
+        {
+          "domain": "technical",
+          "coverage": 1.0,
+          "specificity": "specialized"
+        },
+        {
+          "domain": "ai_technology",
+          "coverage": 0.7,
+          "specificity": "focused"
+        }
+      ],
+      "temporalDomains": [
+        {
+          "period": "2024",
+          "relevance": 1.0
+        }
+      ],
+      "entityDomains": [
+        {
+          "entityType": "organization",
+          "entities": ["ZPT Development Team"]
+        }
+      ]
+    },
+    "tiltProjections": {
+      "keywordProjection": {
+        "primaryTerms": [
+          {
+            "term": "API",
+            "frequency": 45,
+            "tfidf": 0.92
+          },
+          {
+            "term": "endpoint",
+            "frequency": 23,
+            "tfidf": 0.85
+          },
+          {
+            "term": "navigation",
+            "frequency": 31,
+            "tfidf": 0.88
+          }
+        ],
+        "effectiveness": 0.91
+      },
+      "embeddingProjection": {
+        "vectorSpace": "technical_docs_512d",
+        "dimensions": 512,
+        "similarityThreshold": 0.7,
+        "effectiveness": 0.83
+      },
+      "graphProjection": {
+        "citationNetwork": {
+          "incomingCitations": 0,
+          "outgoingCitations": 0,
+          "citationClusters": ["api_documentation"]
+        },
+        "topicNetwork": {
+          "centralNodes": ["API", "documentation", "navigation"],
+          "connectivity": 0.78
+        },
+        "effectiveness": 0.75
+      },
+      "temporalProjection": {
+        "chronologicalOrder": 5,
+        "timelineRelevance": 0.88,
+        "effectiveness": 0.68
+      }
+    },
+    "optimizationScores": {
+      "overall": 0.84,
+      "zoomRelevance": 0.89,
+      "panCoverage": 0.81,
+      "tiltEffectiveness": 0.83
+    }
+  },
+  "relations": {
+    "citations": [],
+    "topicalSimilarity": [
+      {
+        "document": "doc:academic_paper_1",
+        "similarity": 0.45
+      }
+    ]
+  },
+  "access": {
+    "complexity": "intermediate",
+    "audience": ["developers", "practitioners"],
+    "language": "en",
+    "accessibility": {
+      "hasAltText": false,
+      "hasTranscripts": false,
+      "screenReaderFriendly": true
+    }
+  }
+}

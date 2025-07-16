@@ -1,0 +1,335 @@
+{
+  "tiltProjectionUsageExamples": {
+    "description": "Practical examples of how tilt projections present and access document information in ZPT navigation",
+    "lastUpdated": "2024-06-02",
+    "projectionMethods": {
+      "keywordProjection": {
+        "description": "Access documents through keyword matching and term-based relevance",
+        "strengths": ["Precise term matching", "Fast computation", "Interpretable results"],
+        "weaknesses": ["Limited semantic understanding", "Vocabulary mismatch issues"],
+        "examples": [
+          {
+            "query": "neural networks attention mechanisms",
+            "matchingDocuments": [
+              {
+                "document": "doc:academic_paper_1",
+                "matchedTerms": [
+                  {
+                    "term": "neural networks",
+                    "frequency": 15,
+                    "tfidf": 0.87,
+                    "positions": [23, 145, 267, 389]
+                  },
+                  {
+                    "term": "attention mechanisms", 
+                    "frequency": 12,
+                    "tfidf": 0.82,
+                    "positions": [78, 198, 334, 456]
+                  }
+                ],
+                "overallScore": 0.91,
+                "explanation": "High frequency of exact keyword matches with strong TF-IDF scores"
+              }
+            ],
+            "projectionEffectiveness": 0.88
+          },
+          {
+            "query": "API documentation navigation",
+            "matchingDocuments": [
+              {
+                "document": "doc:technical_doc_1",
+                "matchedTerms": [
+                  {
+                    "term": "API",
+                    "frequency": 45,
+                    "tfidf": 0.92,
+                    "positions": [12, 89, 156, 234]
+                  },
+                  {
+                    "term": "navigation",
+                    "frequency": 31,
+                    "tfidf": 0.88,
+                    "positions": [67, 123, 289, 378]
+                  }
+                ],
+                "overallScore": 0.94,
+                "explanation": "Perfect match for technical documentation query"
+              }
+            ],
+            "projectionEffectiveness": 0.95
+          }
+        ]
+      },
+      "embeddingProjection": {
+        "description": "Access documents through semantic similarity in vector space",
+        "strengths": ["Semantic understanding", "Handles synonyms", "Cross-domain similarity"],
+        "weaknesses": ["Computationally intensive", "Less interpretable", "Model dependency"],
+        "examples": [
+          {
+            "query": "machine learning for medical applications",
+            "vectorSpace": "research_papers_768d", 
+            "queryEmbedding": "[-0.12, 0.34, -0.56, ...]",
+            "matchingDocuments": [
+              {
+                "document": "doc:academic_paper_1",
+                "similarity": 0.78,
+                "sharedConcepts": ["neural networks", "AI applications", "computational models"],
+                "explanation": "Strong semantic overlap in AI/ML concepts despite different specific focus"
+              },
+              {
+                "document": "doc:news_article_1",
+                "similarity": 0.72,
+                "sharedConcepts": ["AI healthcare", "medical diagnosis", "machine learning"],
+                "explanation": "Direct match for medical AI applications theme"
+              }
+            ],
+            "projectionEffectiveness": 0.85
+          },
+          {
+            "query": "sustainable computing energy efficiency",
+            "vectorSpace": "research_papers_768d",
+            "matchingDocuments": [
+              {
+                "document": "doc:academic_paper_2",
+                "similarity": 0.91,
+                "sharedConcepts": ["energy efficiency", "green algorithms", "data centers"],
+                "explanation": "Exact semantic match for sustainability in computing"
+              }
+            ],
+            "projectionEffectiveness": 0.92
+          }
+        ]
+      },
+      "graphProjection": {
+        "description": "Access documents through network relationships and connectivity",
+        "strengths": ["Discovers indirect connections", "Authority ranking", "Network effects"],
+        "weaknesses": ["Requires relationship data", "Complex computation", "Cold start problem"],
+        "examples": [
+          {
+            "query": "influential papers in transformer architectures",
+            "graphType": "citation_network",
+            "traversalMethod": "pagerank",
+            "results": [
+              {
+                "document": "doc:academic_paper_1",
+                "authorityScore": 0.12,
+                "incomingCitations": 0,
+                "outgoingCitations": 4,
+                "citationClusters": ["transformer_papers", "nlp_architectures"],
+                "explanation": "New paper with strong foundation citations but no incoming citations yet"
+              }
+            ],
+            "networkInsights": {
+              "totalNodes": 1247,
+              "totalEdges": 3891,
+              "clusterCoherence": 0.84,
+              "networkDensity": 0.006
+            },
+            "projectionEffectiveness": 0.76
+          },
+          {
+            "query": "research connections between AI and healthcare",
+            "graphType": "topic_network",
+            "traversalMethod": "random_walk",
+            "results": [
+              {
+                "pathLength": 2,
+                "connectionStrength": 0.67,
+                "documents": ["doc:academic_paper_1", "doc:news_article_1"],
+                "bridgingConcepts": ["artificial intelligence", "practical applications"],
+                "explanation": "Indirect connection through shared AI application themes"
+              }
+            ],
+            "projectionEffectiveness": 0.71
+          }
+        ]
+      },
+      "temporalProjection": {
+        "description": "Access documents through time-based organization and temporal relevance",
+        "strengths": ["Recency awareness", "Trend analysis", "Historical context"],
+        "weaknesses": ["Time-dependent quality", "Requires accurate timestamps", "Decay functions"],
+        "examples": [
+          {
+            "query": "recent developments in AI regulation",
+            "temporalOrdering": "recency_weighted",
+            "timeWindow": "PT6M",
+            "results": [
+              {
+                "document": "doc:policy_document_1",
+                "publicationDate": "2024-01-01",
+                "recencyScore": 1.0,
+                "temporalRelevance": 0.92,
+                "timelinePosition": 1,
+                "explanation": "Most recent comprehensive regulatory framework"
+              },
+              {
+                "document": "doc:news_article_1", 
+                "publicationDate": "2024-05-15",
+                "recencyScore": 0.95,
+                "temporalRelevance": 0.78,
+                "timelinePosition": 4,
+                "explanation": "Recent news on AI implementation showing regulatory impact"
+              }
+            ],
+            "temporalTrends": {
+              "documentFrequency": "increasing",
+              "topicEvolution": "regulatory_focus_growing",
+              "timespan": "PT5M"
+            },
+            "projectionEffectiveness": 0.87
+          },
+          {
+            "query": "chronological development of neural network architectures",
+            "temporalOrdering": "chronological",
+            "timeGranularity": "monthly",
+            "results": [
+              {
+                "document": "doc:academic_paper_1",
+                "publicationDate": "2024-03-15",
+                "chronologicalPosition": 2,
+                "developmentPhase": "attention_optimization",
+                "explanation": "Represents advances in efficiency of attention mechanisms"
+              }
+            ],
+            "projectionEffectiveness": 0.82
+          }
+        ]
+      },
+      "hybridProjections": {
+        "description": "Combined projection methods for enhanced precision and recall",
+        "examples": [
+          {
+            "type": "embedding_keyword_hybrid",
+            "query": "neural network efficiency optimization",
+            "embeddingWeight": 0.7,
+            "keywordWeight": 0.3,
+            "results": [
+              {
+                "document": "doc:academic_paper_1",
+                "embeddingScore": 0.84,
+                "keywordScore": 0.91,
+                "combinedScore": 0.86,
+                "explanation": "Strong performance on both semantic similarity and keyword matching"
+              }
+            ],
+            "projectionEffectiveness": 0.94
+          },
+          {
+            "type": "graph_temporal_hybrid", 
+            "query": "evolution of AI healthcare research networks",
+            "graphWeight": 0.6,
+            "temporalWeight": 0.4,
+            "results": [
+              {
+                "timeSlice": "2024-Q1",
+                "networkDensity": 0.034,
+                "keyNodes": ["doc:news_article_1"],
+                "emergingConnections": 3,
+                "explanation": "Growing network of AI healthcare applications with institutional backing"
+              }
+            ],
+            "projectionEffectiveness": 0.88
+          }
+        ]
+      }
+    },
+    "projectionSelection": {
+      "queryTypeMapping": {
+        "factual_lookup": {
+          "bestProjection": "keywordProjection",
+          "reason": "Precise term matching for specific facts",
+          "effectiveness": 0.91
+        },
+        "conceptual_exploration": {
+          "bestProjection": "embeddingProjection", 
+          "reason": "Semantic understanding of related concepts",
+          "effectiveness": 0.87
+        },
+        "relationship_discovery": {
+          "bestProjection": "graphProjection",
+          "reason": "Network analysis reveals hidden connections",
+          "effectiveness": 0.79
+        },
+        "trend_analysis": {
+          "bestProjection": "temporalProjection",
+          "reason": "Time-based patterns and evolution",
+          "effectiveness": 0.84
+        },
+        "comprehensive_research": {
+          "bestProjection": "hybridProjections",
+          "reason": "Multiple perspectives for thorough coverage",
+          "effectiveness": 0.92
+        }
+      },
+      "domainSpecificRecommendations": {
+        "academic_research": {
+          "primary": "embeddingProjection",
+          "secondary": "graphProjection",
+          "reason": "Semantic similarity with citation network insights"
+        },
+        "technical_documentation": {
+          "primary": "keywordProjection",
+          "secondary": "embeddingProjection", 
+          "reason": "Precise terminology with conceptual backing"
+        },
+        "news_and_current_events": {
+          "primary": "temporalProjection",
+          "secondary": "embeddingProjection",
+          "reason": "Recency focus with thematic connections"
+        },
+        "policy_and_regulation": {
+          "primary": "keywordProjection",
+          "secondary": "temporalProjection",
+          "reason": "Precise legal terms with regulatory timeline"
+        }
+      }
+    },
+    "performanceCharacteristics": {
+      "computationalComplexity": {
+        "keywordProjection": "O(n)",
+        "embeddingProjection": "O(n)",
+        "graphProjection": "O(n²)",
+        "temporalProjection": "O(n log n)",
+        "hybridProjections": "O(n²)"
+      },
+      "accuracyByDomain": {
+        "academic": {
+          "keyword": 0.82,
+          "embedding": 0.91,
+          "graph": 0.85,
+          "temporal": 0.78
+        },
+        "technical": {
+          "keyword": 0.94,
+          "embedding": 0.83,
+          "graph": 0.67,
+          "temporal": 0.71
+        },
+        "news": {
+          "keyword": 0.78,
+          "embedding": 0.81,
+          "graph": 0.69,
+          "temporal": 0.92
+        },
+        "policy": {
+          "keyword": 0.89,
+          "embedding": 0.79,
+          "graph": 0.73,
+          "temporal": 0.86
+        }
+      },
+      "scalabilityConsiderations": {
+        "documentCount": {
+          "small": "< 1K documents - all projections viable",
+          "medium": "1K-100K documents - consider embedding pre-computation",
+          "large": "100K+ documents - hybrid approaches, distributed processing"
+        },
+        "queryFrequency": {
+          "low": "< 100 queries/day - on-demand computation acceptable",
+          "medium": "100-10K queries/day - cache popular projections",
+          "high": "10K+ queries/day - pre-compute projection indices"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,333 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix zpt: <http://purl.org/stuff/zpt/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doc: <http://purl.org/stuff/zpt/examples/document/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+# Pan Domain Examples for Document Filtering
+# This file demonstrates how different pan domains can be used to scope document collections
+
+## Topic-Based Pan Domains
+
+### Artificial Intelligence Domain
+doc:AIDomain a zpt:PanDomain ;
+    rdfs:label "Artificial Intelligence Domain"@en ;
+    rdfs:comment "Scope covering artificial intelligence, machine learning, and related technologies"@en ;
+    skos:prefLabel "AI Technology Domain" ;
+    skos:member doc:academic_paper_1, doc:technical_doc_1, doc:news_article_1 ;
+    doc:topicCoverage 0.95 ;
+    doc:domainBreadth "broad" ;
+    doc:includedTopics "neural networks", "machine learning", "AI applications", "deep learning" .
+
+### Healthcare Domain  
+doc:HealthcareDomain a zpt:PanDomain ;
+    rdfs:label "Healthcare Domain"@en ;
+    rdfs:comment "Scope focused on medical, health, and healthcare technology content"@en ;
+    skos:prefLabel "Healthcare and Medical Domain" ;
+    skos:member doc:news_article_1 ;
+    doc:topicCoverage 0.88 ;
+    doc:domainBreadth "focused" ;
+    doc:includedTopics "medical diagnosis", "healthcare technology", "patient care", "medical AI" .
+
+### Sustainability Domain
+doc:SustainabilityDomain a zpt:PanDomain ;
+    rdfs:label "Sustainability Domain"@en ;
+    rdfs:comment "Scope covering environmental sustainability, green technology, and climate issues"@en ;
+    skos:prefLabel "Environmental Sustainability Domain" ;
+    skos:member doc:academic_paper_2 ;
+    doc:topicCoverage 0.92 ;
+    doc:domainBreadth "focused" ;
+    doc:includedTopics "green computing", "energy efficiency", "sustainable technology", "carbon reduction" .
+
+### Privacy and Policy Domain
+doc:PrivacyPolicyDomain a zpt:PanDomain ;
+    rdfs:label "Privacy and Policy Domain"@en ;
+    rdfs:comment "Scope covering privacy rights, data protection, and regulatory policy"@en ;
+    skos:prefLabel "Digital Privacy and Policy Domain" ;
+    skos:member doc:policy_document_1 ;
+    doc:topicCoverage 0.96 ;
+    doc:domainBreadth "specialized" ;
+    doc:includedTopics "data protection", "privacy rights", "AI regulation", "policy framework" .
+
+## Temporal Pan Domains
+
+### Recent 2024 Domain
+doc:Recent2024Domain a zpt:TemporalDomain ;
+    rdfs:label "Recent 2024 Domain"@en ;
+    rdfs:comment "Documents published in 2024"@en ;
+    skos:prefLabel "2024 Publications" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2, doc:technical_doc_1, 
+               doc:news_article_1, doc:policy_document_1 ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDate "2024-01-01"^^xsd:date
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inXSDDate "2024-12-31"^^xsd:date
+    ] ;
+    doc:temporalRelevance 1.0 .
+
+### Early 2024 Domain (Q1)
+doc:Early2024Domain a zpt:TemporalDomain ;
+    rdfs:label "Early 2024 Domain"@en ;
+    rdfs:comment "Documents from first quarter of 2024"@en ;
+    skos:prefLabel "Q1 2024 Publications" ;
+    skos:member doc:academic_paper_1, doc:policy_document_1 ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDate "2024-01-01"^^xsd:date
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inXSDDate "2024-03-31"^^xsd:date
+    ] ;
+    doc:temporalRelevance 0.9 .
+
+### Spring 2024 Domain
+doc:Spring2024Domain a zpt:TemporalDomain ;
+    rdfs:label "Spring 2024 Domain"@en ;
+    rdfs:comment "Documents from spring 2024 (April-June)"@en ;
+    skos:prefLabel "Spring 2024 Publications" ;
+    skos:member doc:academic_paper_2, doc:technical_doc_1, doc:news_article_1 ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDate "2024-04-01"^^xsd:date
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inXSDDate "2024-06-30"^^xsd:date
+    ] ;
+    doc:temporalRelevance 0.95 .
+
+### Modern AI Era Domain
+doc:ModernAIEraDomain a zpt:TemporalDomain ;
+    rdfs:label "Modern AI Era Domain"@en ;
+    rdfs:comment "Documents from the transformer and LLM era (2020 onwards)"@en ;
+    skos:prefLabel "Modern AI Era (2020+)" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2, doc:technical_doc_1, 
+               doc:news_article_1, doc:policy_document_1 ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDate "2020-01-01"^^xsd:date
+    ] ;
+    doc:temporalRelevance 0.88 .
+
+## Entity-Based Pan Domains
+
+### Academic Institution Domain
+doc:AcademicInstitutionDomain a zpt:EntityDomain ;
+    rdfs:label "Academic Institution Domain"@en ;
+    rdfs:comment "Scope focused on academic and research institutions"@en ;
+    skos:prefLabel "Academic Research Domain" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2 ;
+    doc:primaryEntities [
+        rdf:type foaf:Organization ;
+        rdfs:label "University of California" ;
+        doc:entityRole "research_institution"
+    ], [
+        rdf:type foaf:Organization ;
+        rdfs:label "MIT Computer Science Department" ;
+        doc:entityRole "research_institution"
+    ] ;
+    doc:entityCoverage 0.85 .
+
+### Healthcare Institution Domain
+doc:HealthcareInstitutionDomain a zpt:EntityDomain ;
+    rdfs:label "Healthcare Institution Domain"@en ;
+    rdfs:comment "Scope focused on healthcare and medical institutions"@en ;
+    skos:prefLabel "Healthcare Institution Domain" ;
+    skos:member doc:news_article_1 ;
+    doc:primaryEntities [
+        rdf:type foaf:Organization ;
+        rdfs:label "Stanford Medical Center" ;
+        doc:entityRole "healthcare_provider"
+    ], [
+        rdf:type foaf:Organization ;
+        rdfs:label "Massachusetts General Hospital" ;
+        doc:entityRole "healthcare_provider"
+    ], [
+        rdf:type foaf:Organization ;
+        rdfs:label "Kaiser Permanente" ;
+        doc:entityRole "healthcare_provider"
+    ] ;
+    doc:entityCoverage 0.92 .
+
+### European Regulatory Domain
+doc:EuropeanRegulatoryDomain a zpt:EntityDomain ;
+    rdfs:label "European Regulatory Domain"@en ;
+    rdfs:comment "Scope focused on European Union regulatory bodies and frameworks"@en ;
+    skos:prefLabel "EU Regulatory Domain" ;
+    skos:member doc:policy_document_1 ;
+    doc:primaryEntities [
+        rdf:type foaf:Organization ;
+        rdfs:label "European Data Protection Board" ;
+        doc:entityRole "regulatory_authority"
+    ], [
+        rdf:type foaf:Organization ;
+        rdfs:label "European Digital Privacy Agency" ;
+        doc:entityRole "enforcement_agency"
+    ] ;
+    doc:entityCoverage 0.96 .
+
+### Technology Industry Domain
+doc:TechnologyIndustryDomain a zpt:EntityDomain ;
+    rdfs:label "Technology Industry Domain"@en ;
+    rdfs:comment "Scope covering technology companies and industry organizations"@en ;
+    skos:prefLabel "Technology Industry Domain" ;
+    skos:member doc:technical_doc_1, doc:news_article_1 ;
+    doc:primaryEntities [
+        rdf:type foaf:Organization ;
+        rdfs:label "ZPT Development Team" ;
+        doc:entityRole "software_development"
+    ], [
+        rdf:type foaf:Organization ;
+        rdfs:label "TechHealth Daily" ;
+        doc:entityRole "technology_media"
+    ] ;
+    doc:entityCoverage 0.78 .
+
+## Geospatial Pan Domains
+
+### North America Domain
+doc:NorthAmericaDomain a zpt:GeospatialDomain ;
+    rdfs:label "North America Domain"@en ;
+    rdfs:comment "Documents with North American geographic focus"@en ;
+    skos:prefLabel "North American Geographic Domain" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2, doc:news_article_1 ;
+    geo:lat 45.0 ;
+    geo:long -100.0 ;
+    doc:geographicScope "continental" ;
+    doc:includedRegions "United States", "Canada" .
+
+### California Domain
+doc:CaliforniaDomain a zpt:GeospatialDomain ;
+    rdfs:label "California Domain"@en ;
+    rdfs:comment "Documents with California geographic focus or origin"@en ;
+    skos:prefLabel "California Geographic Domain" ;
+    skos:member doc:academic_paper_1, doc:news_article_1 ;
+    geo:lat 36.7783 ;
+    geo:long -119.4179 ;
+    doc:geographicScope "state" ;
+    doc:includedRegions "California", "San Francisco Bay Area" .
+
+### European Union Domain
+doc:EuropeanUnionDomain a zpt:GeospatialDomain ;
+    rdfs:label "European Union Domain"@en ;
+    rdfs:comment "Documents with European Union geographic focus"@en ;
+    skos:prefLabel "European Union Geographic Domain" ;
+    skos:member doc:policy_document_1 ;
+    geo:lat 50.8503 ;
+    geo:long 4.3517 ;
+    doc:geographicScope "supranational" ;
+    doc:includedRegions "European Union", "27 Member States" .
+
+### Global Domain
+doc:GlobalDomain a zpt:GeospatialDomain ;
+    rdfs:label "Global Domain"@en ;
+    rdfs:comment "Documents with global or international scope"@en ;
+    skos:prefLabel "Global Geographic Domain" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2, doc:technical_doc_1, 
+               doc:news_article_1, doc:policy_document_1 ;
+    doc:geographicScope "global" ;
+    doc:includedRegions "Worldwide", "International" .
+
+## Composite Pan Domains (Multiple Dimensions)
+
+### AI Healthcare 2024 Domain
+doc:AIHealthcare2024Domain a zpt:PanDomain ;
+    rdfs:label "AI Healthcare 2024 Domain"@en ;
+    rdfs:comment "Composite domain combining AI technology, healthcare focus, and 2024 timeframe"@en ;
+    skos:prefLabel "AI in Healthcare - 2024" ;
+    skos:member doc:news_article_1 ;
+    doc:compositeOf doc:AIDomain, doc:HealthcareDomain, doc:Recent2024Domain ;
+    doc:topicCoverage 0.94 ;
+    doc:temporalRelevance 1.0 ;
+    doc:entityCoverage 0.88 .
+
+### Academic AI Research Domain
+doc:AcademicAIResearchDomain a zpt:PanDomain ;
+    rdfs:label "Academic AI Research Domain"@en ;
+    rdfs:comment "Composite domain combining AI technology and academic research institutions"@en ;
+    skos:prefLabel "Academic AI Research" ;
+    skos:member doc:academic_paper_1, doc:academic_paper_2 ;
+    doc:compositeOf doc:AIDomain, doc:AcademicInstitutionDomain ;
+    doc:topicCoverage 0.96 ;
+    doc:entityCoverage 0.92 .
+
+### EU Privacy Regulation Domain
+doc:EUPrivacyRegulationDomain a zpt:PanDomain ;
+    rdfs:label "EU Privacy Regulation Domain"@en ;
+    rdfs:comment "Composite domain combining privacy policy and European regulatory scope"@en ;
+    skos:prefLabel "EU Digital Privacy Regulation" ;
+    skos:member doc:policy_document_1 ;
+    doc:compositeOf doc:PrivacyPolicyDomain, doc:EuropeanRegulatoryDomain, doc:EuropeanUnionDomain ;
+    doc:topicCoverage 0.98 ;
+    doc:entityCoverage 0.96 ;
+    doc:geographicScope "regional" .
+
+## Pan Domain Properties
+
+# Coverage and effectiveness properties
+doc:topicCoverage a owl:DatatypeProperty ;
+    rdfs:domain zpt:PanDomain ;
+    rdfs:range xsd:float ;
+    rdfs:label "topic coverage"@en ;
+    rdfs:comment "How well the domain covers its intended topics (0.0-1.0)"@en .
+
+doc:domainBreadth a owl:DatatypeProperty ;
+    rdfs:domain zpt:PanDomain ;
+    rdfs:range xsd:string ;
+    rdfs:label "domain breadth"@en ;
+    rdfs:comment "Breadth of the domain: broad, focused, specialized"@en .
+
+doc:includedTopics a owl:DatatypeProperty ;
+    rdfs:domain zpt:PanDomain ;
+    rdfs:range xsd:string ;
+    rdfs:label "included topics"@en ;
+    rdfs:comment "Comma-separated list of key topics covered"@en .
+
+doc:temporalRelevance a owl:DatatypeProperty ;
+    rdfs:domain zpt:TemporalDomain ;
+    rdfs:range xsd:float ;
+    rdfs:label "temporal relevance"@en ;
+    rdfs:comment "Relevance of the temporal scope (0.0-1.0)"@en .
+
+doc:entityCoverage a owl:DatatypeProperty ;
+    rdfs:domain zpt:EntityDomain ;
+    rdfs:range xsd:float ;
+    rdfs:label "entity coverage"@en ;
+    rdfs:comment "Coverage of relevant entities (0.0-1.0)"@en .
+
+doc:entityRole a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "entity role"@en ;
+    rdfs:comment "Role or type of the entity in the domain"@en .
+
+doc:geographicScope a owl:DatatypeProperty ;
+    rdfs:domain zpt:GeospatialDomain ;
+    rdfs:range xsd:string ;
+    rdfs:label "geographic scope"@en ;
+    rdfs:comment "Level of geographic scope: local, regional, national, continental, global"@en .
+
+doc:includedRegions a owl:DatatypeProperty ;
+    rdfs:domain zpt:GeospatialDomain ;
+    rdfs:range xsd:string ;
+    rdfs:label "included regions"@en ;
+    rdfs:comment "Comma-separated list of geographic regions covered"@en .
+
+doc:compositeOf a owl:ObjectProperty ;
+    rdfs:domain zpt:PanDomain ;
+    rdfs:range zpt:PanDomain ;
+    rdfs:label "composite of"@en ;
+    rdfs:comment "Indicates that this domain is a composite of other domains"@en .
+
+doc:primaryEntities a owl:ObjectProperty ;
+    rdfs:domain zpt:EntityDomain ;
+    rdfs:label "primary entities"@en ;
+    rdfs:comment "Main entities that define the scope of this domain"@en .

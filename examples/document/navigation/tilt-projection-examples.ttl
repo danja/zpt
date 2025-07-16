@@ -1,0 +1,410 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix zpt: <http://purl.org/stuff/zpt/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doc: <http://purl.org/stuff/zpt/examples/document/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Tilt Projection Examples for Document Navigation
+# This file demonstrates how different tilt projections present document information
+
+## Keyword Projection Examples
+
+### Primary Keyword Projection
+doc:PrimaryKeywordProjection a zpt:TiltProjection ;
+    rdfs:label "Primary Keyword Projection"@en ;
+    rdfs:comment "Document access through primary keyword matching and TF-IDF scoring"@en ;
+    skos:prefLabel "Keyword-Based Access" ;
+    doc:projectionType "keyword" ;
+    doc:algorithmType "tf-idf" ;
+    doc:effectiveness 0.87 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "precise term-based queries", "domain-specific searches", "technical documentation" .
+
+# Keyword projections for each document
+doc:academic_paper_1_keywords a doc:KeywordProjectionInstance ;
+    doc:sourceDocument doc:academic_paper_1 ;
+    doc:projection doc:PrimaryKeywordProjection ;
+    doc:primaryTerms [
+        doc:term "neural networks" ;
+        doc:frequency 15 ;
+        doc:tfidf 0.87 ;
+        doc:contextRelevance 0.95
+    ], [
+        doc:term "attention mechanisms" ;
+        doc:frequency 12 ;
+        doc:tfidf 0.82 ;
+        doc:contextRelevance 0.93
+    ], [
+        doc:term "transformer" ;
+        doc:frequency 8 ;
+        doc:tfidf 0.75 ;
+        doc:contextRelevance 0.88
+    ], [
+        doc:term "NLP" ;
+        doc:frequency 10 ;
+        doc:tfidf 0.69 ;
+        doc:contextRelevance 0.92
+    ] ;
+    doc:keywordDensity 0.84 ;
+    doc:termCoverage 0.91 .
+
+doc:technical_doc_1_keywords a doc:KeywordProjectionInstance ;
+    doc:sourceDocument doc:technical_doc_1 ;
+    doc:projection doc:PrimaryKeywordProjection ;
+    doc:primaryTerms [
+        doc:term "API" ;
+        doc:frequency 45 ;
+        doc:tfidf 0.92 ;
+        doc:contextRelevance 0.98
+    ], [
+        doc:term "navigation" ;
+        doc:frequency 31 ;
+        doc:tfidf 0.88 ;
+        doc:contextRelevance 0.95
+    ], [
+        doc:term "endpoint" ;
+        doc:frequency 23 ;
+        doc:tfidf 0.85 ;
+        doc:contextRelevance 0.87
+    ] ;
+    doc:keywordDensity 0.91 ;
+    doc:termCoverage 0.89 .
+
+### Semantic Keyword Projection
+doc:SemanticKeywordProjection a zpt:TiltProjection ;
+    rdfs:label "Semantic Keyword Projection"@en ;
+    rdfs:comment "Enhanced keyword matching with semantic similarity and synonyms"@en ;
+    skos:prefLabel "Semantic Keyword Access" ;
+    doc:projectionType "semantic_keyword" ;
+    doc:algorithmType "word2vec_enhanced_tfidf" ;
+    doc:effectiveness 0.91 ;
+    doc:computationalComplexity "O(n log n)" ;
+    doc:bestUsedFor "conceptual queries", "domain synonyms", "multilingual access" .
+
+## Embedding Projection Examples
+
+### Research Paper Embedding Projection
+doc:ResearchPaperEmbeddingProjection a zpt:TiltProjection ;
+    rdfs:label "Research Paper Embedding Projection"@en ;
+    rdfs:comment "Vector similarity access optimized for academic research papers"@en ;
+    skos:prefLabel "Research Paper Vector Space" ;
+    doc:projectionType "embedding" ;
+    doc:vectorSpace "research_papers_768d" ;
+    doc:embeddingModel "SciBERT" ;
+    doc:dimensions 768 ;
+    doc:similarityMetric "cosine" ;
+    doc:effectiveness 0.92 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "research similarity", "citation discovery", "topic clustering" .
+
+# Embedding instances for academic papers
+doc:academic_paper_1_embedding a doc:EmbeddingProjectionInstance ;
+    doc:sourceDocument doc:academic_paper_1 ;
+    doc:projection doc:ResearchPaperEmbeddingProjection ;
+    doc:vectorRepresentation "[-0.23, 0.45, -0.12, ...]" ;  # Placeholder - would be full 768-dim vector
+    doc:embeddingQuality 0.94 ;
+    doc:nearestNeighbors [
+        doc:neighbor doc:academic_paper_2 ;
+        doc:similarity 0.78 ;
+        doc:sharedTopics "AI", "computational efficiency"
+    ] ;
+    doc:topicClusters "neural_architectures", "nlp_models", "attention_mechanisms" .
+
+### Technical Documentation Embedding Projection  
+doc:TechnicalDocEmbeddingProjection a zpt:TiltProjection ;
+    rdfs:label "Technical Documentation Embedding Projection"@en ;
+    rdfs:comment "Vector similarity access optimized for technical documentation"@en ;
+    skos:prefLabel "Technical Documentation Vector Space" ;
+    doc:projectionType "embedding" ;
+    doc:vectorSpace "technical_docs_512d" ;
+    doc:embeddingModel "CodeBERT" ;
+    doc:dimensions 512 ;
+    doc:similarityMetric "cosine" ;
+    doc:effectiveness 0.88 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "API similarity", "documentation search", "code examples" .
+
+### News Article Embedding Projection
+doc:NewsEmbeddingProjection a zpt:TiltProjection ;
+    rdfs:label "News Article Embedding Projection"@en ;
+    rdfs:comment "Vector similarity access optimized for news and current events"@en ;
+    skos:prefLabel "News Article Vector Space" ;
+    doc:projectionType "embedding" ;
+    doc:vectorSpace "news_articles_384d" ;
+    doc:embeddingModel "DistilBERT" ;
+    doc:dimensions 384 ;
+    doc:similarityMetric "cosine" ;
+    doc:effectiveness 0.85 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "story similarity", "event clustering", "trend analysis" .
+
+## Graph Projection Examples
+
+### Citation Network Projection
+doc:CitationNetworkProjection a zpt:TiltProjection ;
+    rdfs:label "Citation Network Projection"@en ;
+    rdfs:comment "Document access through citation relationships and academic influence"@en ;
+    skos:prefLabel "Citation Network Access" ;
+    doc:projectionType "graph" ;
+    doc:graphType "citation_network" ;
+    doc:traversalAlgorithm "pagerank" ;
+    doc:effectiveness 0.83 ;
+    doc:computationalComplexity "O(n²)" ;
+    doc:bestUsedFor "influence tracking", "research lineage", "authority ranking" .
+
+# Citation graph instances
+doc:academic_paper_1_citations a doc:GraphProjectionInstance ;
+    doc:sourceDocument doc:academic_paper_1 ;
+    doc:projection doc:CitationNetworkProjection ;
+    doc:incomingCitations 0 ;
+    doc:outgoingCitations 4 ;
+    doc:citationClusters "transformer_papers", "nlp_architectures" ;
+    doc:authorityScore 0.12 ;  # New paper, low initial authority
+    doc:citedWorks [
+        doc:citedWork "Vaswani et al. 2017" ;
+        doc:citationType "foundational" ;
+        doc:citationStrength 0.9
+    ], [
+        doc:citedWork "Devlin et al. 2018" ;
+        doc:citationType "methodological" ;
+        doc:citationStrength 0.8
+    ] .
+
+### Topical Graph Projection
+doc:TopicalGraphProjection a zpt:TiltProjection ;
+    rdfs:label "Topical Graph Projection"@en ;
+    rdfs:comment "Document access through topic relationships and conceptual connections"@en ;
+    skos:prefLabel "Topic Network Access" ;
+    doc:projectionType "graph" ;
+    doc:graphType "topic_network" ;
+    doc:traversalAlgorithm "random_walk" ;
+    doc:effectiveness 0.79 ;
+    doc:computationalComplexity "O(n log n)" ;
+    doc:bestUsedFor "concept exploration", "interdisciplinary discovery", "topic evolution" .
+
+# Topic graph instances  
+doc:topic_graph_ai_healthcare a doc:GraphProjectionInstance ;
+    doc:projection doc:TopicalGraphProjection ;
+    doc:centralTopics "artificial_intelligence", "healthcare", "medical_diagnosis" ;
+    doc:connectedDocuments doc:academic_paper_1, doc:news_article_1 ;
+    doc:topicStrength [
+        doc:topic "ai" ;
+        doc:strength 0.95 ;
+        doc:documentCoverage 0.88
+    ], [
+        doc:topic "healthcare" ;
+        doc:strength 0.87 ;
+        doc:documentCoverage 0.72
+    ] ;
+    doc:crossDisciplinaryConnections 0.84 .
+
+### Entity Relationship Projection
+doc:EntityRelationshipProjection a zpt:TiltProjection ;
+    rdfs:label "Entity Relationship Projection"@en ;
+    rdfs:comment "Document access through entity relationships and organizational networks"@en ;
+    skos:prefLabel "Entity Network Access" ;
+    doc:projectionType "graph" ;
+    doc:graphType "entity_network" ;
+    doc:traversalAlgorithm "breadth_first" ;
+    doc:effectiveness 0.76 ;
+    doc:computationalComplexity "O(n + m)" ;
+    doc:bestUsedFor "institutional research", "collaboration tracking", "expertise location" .
+
+## Temporal Projection Examples
+
+### Chronological Projection
+doc:ChronologicalProjection a zpt:TiltProjection ;
+    rdfs:label "Chronological Projection"@en ;
+    rdfs:comment "Document access ordered by publication timeline and temporal relevance"@en ;
+    skos:prefLabel "Chronological Access" ;
+    doc:projectionType "temporal" ;
+    doc:temporalOrdering "chronological" ;
+    doc:timeGranularity "daily" ;
+    doc:effectiveness 0.82 ;
+    doc:computationalComplexity "O(n log n)" ;
+    doc:bestUsedFor "trend analysis", "historical research", "development tracking" .
+
+# Chronological ordering of documents
+doc:chronological_2024_timeline a doc:TemporalProjectionInstance ;
+    doc:projection doc:ChronologicalProjection ;
+    doc:timelineEntries [
+        doc:date "2024-01-01" ;
+        doc:document doc:policy_document_1 ;
+        doc:timelinePosition 1 ;
+        doc:temporalRelevance 0.92
+    ], [
+        doc:date "2024-03-15" ;
+        doc:document doc:academic_paper_1 ;
+        doc:timelinePosition 2 ;
+        doc:temporalRelevance 0.95
+    ], [
+        doc:date "2024-04-10" ;
+        doc:document doc:academic_paper_2 ;
+        doc:timelinePosition 3 ;
+        doc:temporalRelevance 0.93
+    ], [
+        doc:date "2024-05-15" ;
+        doc:document doc:news_article_1 ;
+        doc:timelinePosition 4 ;
+        doc:temporalRelevance 0.98
+    ], [
+        doc:date "2024-06-01" ;
+        doc:document doc:technical_doc_1 ;
+        doc:timelinePosition 5 ;
+        doc:temporalRelevance 0.88
+    ] ;
+    doc:timespan "PT5M" ;  # 5 months
+    doc:temporalDensity 0.83 .
+
+### Event-Based Temporal Projection
+doc:EventBasedTemporalProjection a zpt:TiltProjection ;
+    rdfs:label "Event-Based Temporal Projection"@en ;
+    rdfs:comment "Document access organized around significant events and milestones"@en ;
+    skos:prefLabel "Event Timeline Access" ;
+    doc:projectionType "temporal" ;
+    doc:temporalOrdering "event_based" ;
+    doc:timeGranularity "event" ;
+    doc:effectiveness 0.79 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "event analysis", "milestone tracking", "impact assessment" .
+
+### Recency-Weighted Projection
+doc:RecencyWeightedProjection a zpt:TiltProjection ;
+    rdfs:label "Recency-Weighted Projection"@en ;
+    rdfs:comment "Document access with exponential decay weighting favoring recent content"@en ;
+    skos:prefLabel "Recency-Weighted Access" ;
+    doc:projectionType "temporal" ;
+    doc:temporalOrdering "recency_weighted" ;
+    doc:decayFunction "exponential" ;
+    doc:halfLife "PT180D" ;  # 6 months
+    doc:effectiveness 0.86 ;
+    doc:computationalComplexity "O(n)" ;
+    doc:bestUsedFor "current awareness", "breaking news", "latest research" .
+
+## Multi-Modal Projection Examples
+
+### Hybrid Embedding-Keyword Projection
+doc:HybridEmbeddingKeywordProjection a zpt:TiltProjection ;
+    rdfs:label "Hybrid Embedding-Keyword Projection"@en ;
+    rdfs:comment "Combined semantic embedding and keyword matching for enhanced precision"@en ;
+    skos:prefLabel "Hybrid Semantic Access" ;
+    doc:projectionType "hybrid" ;
+    doc:combinationMethod "weighted_sum" ;
+    doc:embeddingWeight 0.7 ;
+    doc:keywordWeight 0.3 ;
+    doc:effectiveness 0.94 ;
+    doc:computationalComplexity "O(n log n)" ;
+    doc:bestUsedFor "precise semantic queries", "balanced recall-precision", "domain expertise" .
+
+### Graph-Temporal Projection
+doc:GraphTemporalProjection a zpt:TiltProjection ;
+    rdfs:label "Graph-Temporal Projection"@en ;
+    rdfs:comment "Time-aware graph traversal considering both relationships and temporal factors"@en ;
+    skos:prefLabel "Dynamic Network Access" ;
+    doc:projectionType "hybrid" ;
+    doc:combinationMethod "temporal_graph_walk" ;
+    doc:graphWeight 0.6 ;
+    doc:temporalWeight 0.4 ;
+    doc:effectiveness 0.88 ;
+    doc:computationalComplexity "O(n² log n)" ;
+    doc:bestUsedFor "evolving networks", "influence over time", "trend prediction" .
+
+## Projection Properties and Metadata
+
+# Effectiveness and performance properties
+doc:projectionType a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "projection type"@en ;
+    rdfs:comment "Type of projection: keyword, embedding, graph, temporal, hybrid"@en .
+
+doc:effectiveness a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltProjection ;
+    rdfs:range xsd:float ;
+    rdfs:label "effectiveness"@en ;
+    rdfs:comment "Overall effectiveness score for this projection method (0.0-1.0)"@en .
+
+doc:computationalComplexity a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "computational complexity"@en ;
+    rdfs:comment "Big O notation for computational complexity"@en .
+
+doc:bestUsedFor a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltProjection ;
+    rdfs:range xsd:string ;
+    rdfs:label "best used for"@en ;
+    rdfs:comment "Comma-separated list of use cases where this projection excels"@en .
+
+# Keyword projection properties
+doc:algorithmType a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "algorithm type"@en ;
+    rdfs:comment "Specific algorithm or method used"@en .
+
+doc:keywordDensity a owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:label "keyword density"@en ;
+    rdfs:comment "Density of relevant keywords in the document (0.0-1.0)"@en .
+
+doc:termCoverage a owl:DatatypeProperty ;
+    rdfs:range xsd:float ;
+    rdfs:label "term coverage"@en ;
+    rdfs:comment "Coverage of important terms by the keyword extraction (0.0-1.0)"@en .
+
+# Embedding projection properties
+doc:vectorSpace a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "vector space"@en ;
+    rdfs:comment "Name/identifier of the vector space"@en .
+
+doc:embeddingModel a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "embedding model"@en ;
+    rdfs:comment "Model used to generate embeddings"@en .
+
+doc:dimensions a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "dimensions"@en ;
+    rdfs:comment "Number of dimensions in the vector space"@en .
+
+doc:similarityMetric a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "similarity metric"@en ;
+    rdfs:comment "Metric used to compute similarity (cosine, euclidean, etc.)"@en .
+
+# Graph projection properties
+doc:graphType a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "graph type"@en ;
+    rdfs:comment "Type of graph structure used"@en .
+
+doc:traversalAlgorithm a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "traversal algorithm"@en ;
+    rdfs:comment "Algorithm used for graph traversal"@en .
+
+# Temporal projection properties
+doc:temporalOrdering a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "temporal ordering"@en ;
+    rdfs:comment "Method of temporal ordering"@en .
+
+doc:timeGranularity a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "time granularity"@en ;
+    rdfs:comment "Granularity of temporal analysis"@en .
+
+doc:decayFunction a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "decay function"@en ;
+    rdfs:comment "Mathematical function for temporal decay"@en .
+
+doc:halfLife a owl:DatatypeProperty ;
+    rdfs:range xsd:duration ;
+    rdfs:label "half life"@en ;
+    rdfs:comment "Half-life for temporal decay functions"@en .

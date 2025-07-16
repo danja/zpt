@@ -1,0 +1,391 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix zpt: <http://purl.org/stuff/zpt/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doc: <http://purl.org/stuff/zpt/examples/document/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Navigation View Instances - Formal representation of query-to-ZPT mappings
+# This file contains actual NavigationView instances created from the query examples
+
+## Example 1: Academic Research Query
+doc:view_q001 a zpt:NavigationView ;
+    rdfs:label "Academic Neural Networks Research View"@en ;
+    rdfs:comment "Navigation view for recent research papers on neural network attention mechanisms"@en ;
+    
+    # Query and context
+    zpt:answersQuery "Find recent research papers on neural network attention mechanisms" ;
+    zpt:queryComplexity "expert" ;
+    zpt:navigationTimestamp "2024-06-02T14:30:00Z"^^xsd:dateTime ;
+    
+    # ZPT Configuration
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:TextLevel ;
+        doc:zoomReasoning "User wants full research papers, not summaries" ;
+        doc:zoomConfidence 0.89
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:AcademicDomain, doc:AIDomain, doc:Recent2024Domain ;
+        doc:panCombinationMethod "weighted_intersection" ;
+        doc:panWeights "academic:0.8, ai:0.9, recent:0.7"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:EmbeddingProjection ;
+        doc:tiltReasoning "Academic research benefits from semantic similarity" ;
+        doc:tiltConfidence 0.85 ;
+        doc:tiltFallback zpt:KeywordProjection
+    ] ;
+    
+    # Results
+    zpt:selectedCorpuscle doc:academic_paper_1 ;
+    zpt:optimizationScore 0.88 ;
+    zpt:zoomRelevance 0.92 ;
+    zpt:panCoverage 0.85 ;
+    zpt:tiltEffectiveness 0.87 ;
+    
+    # Provenance
+    zpt:navigatedBy doc:exampleUser ;
+    zpt:partOfSession doc:researchSession001 .
+
+## Example 2: Current Events Exploration
+doc:view_q002 a zpt:NavigationView ;
+    rdfs:label "AI Healthcare Developments View"@en ;
+    rdfs:comment "Navigation view for latest developments in AI for healthcare"@en ;
+    
+    zpt:answersQuery "What are the latest developments in AI for healthcare?" ;
+    zpt:queryComplexity "intermediate" ;
+    zpt:navigationTimestamp "2024-06-02T14:35:00Z"^^xsd:dateTime ;
+    
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:CommunityLevel ;
+        doc:zoomReasoning "User wants overview of developments, not detailed papers" ;
+        doc:zoomConfidence 0.91
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:AIHealthcare2024Domain ;
+        doc:panCombinationMethod "single_domain" ;
+        doc:panWeights "ai_healthcare:1.0"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:TemporalProjection ;
+        doc:tiltReasoning "Latest developments require temporal ordering" ;
+        doc:tiltConfidence 0.87 ;
+        doc:tiltFallback zpt:EmbeddingProjection
+    ] ;
+    
+    zpt:selectedCorpuscle doc:news_article_1 ;
+    zpt:optimizationScore 0.91 ;
+    zpt:zoomRelevance 0.89 ;
+    zpt:panCoverage 0.94 ;
+    zpt:tiltEffectiveness 0.89 ;
+    
+    zpt:navigatedBy doc:exampleUser ;
+    zpt:partOfSession doc:researchSession001 ;
+    zpt:previousView doc:view_q001 .
+
+## Example 3: Technical Documentation Query
+doc:view_q003 a zpt:NavigationView ;
+    rdfs:label "ZPT API Usage View"@en ;
+    rdfs:comment "Navigation view for ZPT API documentation and usage examples"@en ;
+    
+    zpt:answersQuery "How do I use the ZPT API to create navigation views?" ;
+    zpt:queryComplexity "intermediate" ;
+    zpt:navigationTimestamp "2024-06-02T14:40:00Z"^^xsd:dateTime ;
+    
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:UnitLevel ;
+        doc:zoomReasoning "User needs specific sections like code examples and procedures" ;
+        doc:zoomConfidence 0.93
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:TechnicalDomain ;
+        doc:panCombinationMethod "single_domain" ;
+        doc:panWeights "technical:1.0"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:KeywordProjection ;
+        doc:tiltReasoning "Technical documentation benefits from precise keyword matching" ;
+        doc:tiltConfidence 0.94 ;
+        doc:tiltFallback zpt:EmbeddingProjection
+    ] ;
+    
+    zpt:selectedCorpuscle doc:technical_doc_1 ;
+    zpt:optimizationScore 0.93 ;
+    zpt:zoomRelevance 0.96 ;
+    zpt:panCoverage 0.91 ;
+    zpt:tiltEffectiveness 0.92 ;
+    
+    zpt:navigatedBy doc:exampleUser ;
+    zpt:partOfSession doc:technicalSession001 .
+
+## Example 4: Policy and Regulation Query
+doc:view_q004 a zpt:NavigationView ;
+    rdfs:label "EU AI Privacy Regulation View"@en ;
+    rdfs:comment "Navigation view for European regulations on digital privacy for AI systems"@en ;
+    
+    zpt:answersQuery "Show me European regulations on digital privacy for AI systems" ;
+    zpt:queryComplexity "advanced" ;
+    zpt:navigationTimestamp "2024-06-02T14:45:00Z"^^xsd:dateTime ;
+    
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:TextLevel ;
+        doc:zoomReasoning "Regulatory documents require full text for legal precision" ;
+        doc:zoomConfidence 0.95
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:EUPrivacyRegulationDomain, doc:EuropeanUnionDomain ;
+        doc:panCombinationMethod "weighted_intersection" ;
+        doc:panWeights "eu_privacy:0.95, eu_geographic:0.8"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:KeywordProjection ;
+        doc:tiltReasoning "Legal documents require precise terminology matching" ;
+        doc:tiltConfidence 0.92 ;
+        doc:tiltFallback zpt:EmbeddingProjection
+    ] ;
+    
+    zpt:selectedCorpuscle doc:policy_document_1 ;
+    zpt:optimizationScore 0.92 ;
+    zpt:zoomRelevance 0.94 ;
+    zpt:panCoverage 0.91 ;
+    zpt:tiltEffectiveness 0.91 ;
+    
+    zpt:navigatedBy doc:policyAnalyst ;
+    zpt:partOfSession doc:policyResearchSession001 .
+
+## Example 5: Topic Exploration Query  
+doc:view_q005 a zpt:NavigationView ;
+    rdfs:label "Sustainable Computing Research View"@en ;
+    rdfs:comment "Navigation view for research on sustainable computing"@en ;
+    
+    zpt:answersQuery "What research is being done on sustainable computing?" ;
+    zpt:queryComplexity "intermediate" ;
+    zpt:navigationTimestamp "2024-06-02T14:50:00Z"^^xsd:dateTime ;
+    
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:CommunityLevel ;
+        doc:zoomReasoning "Exploratory query wants overview of research area" ;
+        doc:zoomConfidence 0.86
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:SustainabilityDomain, doc:AcademicDomain ;
+        doc:panCombinationMethod "weighted_intersection" ;
+        doc:panWeights "sustainability:0.9, academic:0.8"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:EmbeddingProjection ;
+        doc:tiltReasoning "Topic exploration benefits from semantic similarity" ;
+        doc:tiltConfidence 0.81 ;
+        doc:tiltFallback zpt:KeywordProjection
+    ] ;
+    
+    zpt:selectedCorpuscle doc:academic_paper_2 ;
+    zpt:optimizationScore 0.84 ;
+    zpt:zoomRelevance 0.87 ;
+    zpt:panCoverage 0.82 ;
+    zpt:tiltEffectiveness 0.83 ;
+    
+    zpt:navigatedBy doc:exampleUser ;
+    zpt:partOfSession doc:sustainabilitySession001 .
+
+## Example 6: Summary Request Query
+doc:view_q006 a zpt:NavigationView ;
+    rdfs:label "AI Developments Summary View"@en ;
+    rdfs:comment "Navigation view for quick summary of AI developments this year"@en ;
+    
+    zpt:answersQuery "Give me a quick summary of what's new in AI this year" ;
+    zpt:queryComplexity "beginner" ;
+    zpt:navigationTimestamp "2024-06-02T14:55:00Z"^^xsd:dateTime ;
+    
+    zpt:hasZoomState [
+        a zpt:ZoomState ;
+        zpt:atZoomLevel zpt:UnitLevel ;
+        doc:zoomReasoning "Quick summary needs abstracts and key points, not full texts" ;
+        doc:zoomConfidence 0.88
+    ] ;
+    
+    zpt:hasPanState [
+        a zpt:PanState ;
+        zpt:withPanDomain doc:AIDomain, doc:Recent2024Domain ;
+        doc:panCombinationMethod "weighted_intersection" ;
+        doc:panWeights "ai:0.9, recent:0.85"
+    ] ;
+    
+    zpt:hasTiltState [
+        a zpt:TiltState ;
+        zpt:withTiltProjection zpt:TemporalProjection ;
+        doc:tiltReasoning "Recent developments best accessed chronologically" ;
+        doc:tiltConfidence 0.79 ;
+        doc:tiltFallback zpt:EmbeddingProjection
+    ] ;
+    
+    zpt:selectedCorpuscle doc:news_article_1, doc:academic_paper_1, doc:academic_paper_2 ;
+    zpt:candidateCorpuscle doc:technical_doc_1 ;
+    zpt:optimizationScore 0.81 ;
+    zpt:zoomRelevance 0.83 ;
+    zpt:panCoverage 0.79 ;
+    zpt:tiltEffectiveness 0.81 ;
+    
+    zpt:navigatedBy doc:exampleUser ;
+    zpt:partOfSession doc:summarySession001 .
+
+## Navigation Sessions
+
+doc:researchSession001 a zpt:NavigationSession ;
+    rdfs:label "Academic Research Session"@en ;
+    rdfs:comment "Session focused on neural networks and AI healthcare research"@en ;
+    prov:startedAtTime "2024-06-02T14:30:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-06-02T14:40:00Z"^^xsd:dateTime ;
+    zpt:sessionDuration "PT10M"^^xsd:duration ;
+    prov:wasAssociatedWith doc:exampleUser .
+
+doc:technicalSession001 a zpt:NavigationSession ;
+    rdfs:label "Technical Documentation Session"@en ;
+    rdfs:comment "Session focused on API documentation and usage"@en ;
+    prov:startedAtTime "2024-06-02T14:40:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-06-02T14:45:00Z"^^xsd:dateTime ;
+    zpt:sessionDuration "PT5M"^^xsd:duration ;
+    prov:wasAssociatedWith doc:exampleUser .
+
+doc:policyResearchSession001 a zpt:NavigationSession ;
+    rdfs:label "Policy Research Session"@en ;
+    rdfs:comment "Session focused on EU privacy and AI regulation"@en ;
+    prov:startedAtTime "2024-06-02T14:45:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-06-02T14:50:00Z"^^xsd:dateTime ;
+    zpt:sessionDuration "PT5M"^^xsd:duration ;
+    prov:wasAssociatedWith doc:policyAnalyst .
+
+doc:sustainabilitySession001 a zpt:NavigationSession ;
+    rdfs:label "Sustainability Research Session"@en ;
+    rdfs:comment "Session focused on sustainable computing research"@en ;
+    prov:startedAtTime "2024-06-02T14:50:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-06-02T14:55:00Z"^^xsd:dateTime ;
+    zpt:sessionDuration "PT5M"^^xsd:duration ;
+    prov:wasAssociatedWith doc:exampleUser .
+
+doc:summarySession001 a zpt:NavigationSession ;
+    rdfs:label "AI Summary Session"@en ;
+    rdfs:comment "Session for getting overview of recent AI developments"@en ;
+    prov:startedAtTime "2024-06-02T14:55:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-06-02T15:00:00Z"^^xsd:dateTime ;
+    zpt:sessionDuration "PT5M"^^xsd:duration ;
+    prov:wasAssociatedWith doc:exampleUser .
+
+## Navigation Agents
+
+doc:exampleUser a zpt:NavigationAgent ;
+    rdfs:label "Example User"@en ;
+    rdfs:comment "Example user agent for demonstration purposes"@en ;
+    foaf:name "Example User" ;
+    doc:userType "researcher" ;
+    doc:expertiseLevel "intermediate" ;
+    doc:preferredZoomLevel zpt:CommunityLevel ;
+    doc:preferredTiltProjection zpt:EmbeddingProjection .
+
+doc:policyAnalyst a zpt:NavigationAgent ;
+    rdfs:label "Policy Analyst"@en ;
+    rdfs:comment "Policy analyst specializing in digital privacy regulation"@en ;
+    foaf:name "Policy Analyst" ;
+    doc:userType "policy_analyst" ;
+    doc:expertiseLevel "expert" ;
+    doc:preferredZoomLevel zpt:TextLevel ;
+    doc:preferredTiltProjection zpt:KeywordProjection .
+
+## Extended Navigation View Properties
+
+# Properties for storing query analysis and mapping metadata
+doc:zoomReasoning a owl:DatatypeProperty ;
+    rdfs:domain zpt:ZoomState ;
+    rdfs:range xsd:string ;
+    rdfs:label "zoom reasoning"@en ;
+    rdfs:comment "Explanation for why this zoom level was selected"@en .
+
+doc:zoomConfidence a owl:DatatypeProperty ;
+    rdfs:domain zpt:ZoomState ;
+    rdfs:range xsd:float ;
+    rdfs:label "zoom confidence"@en ;
+    rdfs:comment "Confidence score for zoom level selection (0.0-1.0)"@en .
+
+doc:panCombinationMethod a owl:DatatypeProperty ;
+    rdfs:domain zpt:PanState ;
+    rdfs:range xsd:string ;
+    rdfs:label "pan combination method"@en ;
+    rdfs:comment "Method used to combine multiple pan domains"@en .
+
+doc:panWeights a owl:DatatypeProperty ;
+    rdfs:domain zpt:PanState ;
+    rdfs:range xsd:string ;
+    rdfs:label "pan weights"@en ;
+    rdfs:comment "Weights assigned to different pan domains"@en .
+
+doc:tiltReasoning a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltState ;
+    rdfs:range xsd:string ;
+    rdfs:label "tilt reasoning"@en ;
+    rdfs:comment "Explanation for why this tilt projection was selected"@en .
+
+doc:tiltConfidence a owl:DatatypeProperty ;
+    rdfs:domain zpt:TiltState ;
+    rdfs:range xsd:float ;
+    rdfs:label "tilt confidence"@en ;
+    rdfs:comment "Confidence score for tilt projection selection (0.0-1.0)"@en .
+
+doc:tiltFallback a owl:ObjectProperty ;
+    rdfs:domain zpt:TiltState ;
+    rdfs:range zpt:TiltProjection ;
+    rdfs:label "tilt fallback"@en ;
+    rdfs:comment "Fallback tilt projection if primary fails"@en .
+
+# User and session properties
+doc:userType a owl:DatatypeProperty ;
+    rdfs:domain zpt:NavigationAgent ;
+    rdfs:range xsd:string ;
+    rdfs:label "user type"@en ;
+    rdfs:comment "Type of user: researcher, developer, analyst, etc."@en .
+
+doc:expertiseLevel a owl:DatatypeProperty ;
+    rdfs:domain zpt:NavigationAgent ;
+    rdfs:range xsd:string ;
+    rdfs:label "expertise level"@en ;
+    rdfs:comment "User expertise level: beginner, intermediate, advanced, expert"@en .
+
+doc:preferredZoomLevel a owl:ObjectProperty ;
+    rdfs:domain zpt:NavigationAgent ;
+    rdfs:range zpt:ZoomLevel ;
+    rdfs:label "preferred zoom level"@en ;
+    rdfs:comment "User's preferred default zoom level"@en .
+
+doc:preferredTiltProjection a owl:ObjectProperty ;
+    rdfs:domain zpt:NavigationAgent ;
+    rdfs:range zpt:TiltProjection ;
+    rdfs:label "preferred tilt projection"@en ;
+    rdfs:comment "User's preferred default tilt projection"@en .
