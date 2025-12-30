@@ -19,9 +19,9 @@ A semantic vocabulary for dynamic knowledge navigation using camera metaphors to
 
 ## Overview
 
-Agents, both human and artificial have limits on the amount of information they can process at a given time : working memory/context window. In attempt to optimise processing workflows, two complimentary ontologies have been developed: [Ragno](https://github.com/danja/ragno), which offers a representation of a knowledgebase that is friendly to both Semantic Web and Language Model technologies, and here ZPT which provides a means of selectively navigating the knowledgebase. 
+Agents, both human and artificial have limits on the amount of information they can process at a given time : working memory/context window. In attempt to optimise processing workflows, two complimentary ontologies have been developed: [Ragno](https://github.com/danja/ragno), which offers a representation of a knowledgebase that is friendly to both Semantic Web and Language Model technologies, and here ZPT which provides a means of purposefully navigating the knowledgebase. 
 
-Ragno describes a heterogenous knowledge graph in a generalized fashion, loosely scale-free - it may be a domain-specific local knowledgebase or the Web as a whole. ZPT adds navigation capabilities that adapt information presentation to user (agent) needs. A system may dynamically select optimal knowledge "corpuscles" based on query requirements across three orthogonal dimensions:
+Ragno describes a heterogenous knowledge graph in a generalized fashion, loosely scale-free - it may be a domain-specific local knowledgebase or the Web as a whole. ZPT adds navigation capabilities that adapt information presentation to user (agent) needs. A system may dynamically select optimal knowledge based on query requirements across three orthogonal dimensions:
 
 - **🔍 Zoom**: Controls abstraction level (entity → summary → full text → community → corpus)
 - **🔄 Pan**: Controls domain boundaries (topics, entities, temporal periods, geographic regions)  
