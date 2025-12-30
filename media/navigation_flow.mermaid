@@ -6,9 +6,10 @@ flowchart TD
     ParseQuery --> TiltAnalysis[Analyze Representation<br/>Preferences]
     
     ZoomAnalysis --> ZoomLevel{Determine<br/>Zoom Level}
+    ZoomLevel -->|Micro| MicroLevel[Micro Level<br/>ragno:Attribute]
     ZoomLevel -->|Detailed| EntityLevel[Entity Level<br/>ragno:Entity]
-    ZoomLevel -->|Summary| UnitLevel[Unit Level<br/>ragno:Unit]
     ZoomLevel -->|Full Text| TextLevel[Text Level<br/>ragno:TextElement]
+    ZoomLevel -->|Summary| UnitLevel[Unit Level<br/>ragno:Unit]
     ZoomLevel -->|High-level| CommunityLevel[Community Level<br/>ragno:CommunityElement]
     ZoomLevel -->|Overview| CorpusLevel[Corpus Level<br/>ragno:Corpus]
     

@@ -9,9 +9,9 @@ A semantic vocabulary for dynamic knowledge navigation using camera metaphors to
 
 ZPT extends the [Ragno ontology](http://purl.org/stuff/ragno/) for heterogeneous knowledge graphs with navigation capabilities that adapt information presentation to user needs. The system dynamically selects optimal knowledge "corpuscles" based on query requirements across three orthogonal dimensions:
 
-- **🔍 Zoom**: Controls abstraction level (entity → summary → full text → community → corpus)
-- **🔄 Pan**: Controls domain boundaries (topics, entities, temporal periods, geographic regions)  
-- **📐 Tilt**: Controls representation method (embeddings, keywords, graph structure, temporal)
+- **🔍 Zoom**: Controls abstraction level (micro → entity → text → unit → community → corpus)
+- **🔄 Pan**: Controls domain boundaries (topics, entities, temporal periods, geographic regions, corpuscle scopes)  
+- **📐 Tilt**: Controls representation method (embeddings, keywords, graph structure, temporal, memory)
 
 ## Key Features
 
@@ -87,7 +87,7 @@ ZPT is designed to work with:
 
 ## Development Status
 
-**Current Version**: 0.1.0 (Initial Release)
+**Current Version**: 0.2.0 (Semem-aligned update)
 
 - ✅ Core ontology design complete
 - ✅ Integration with Ragno defined
@@ -145,7 +145,7 @@ Contributions welcome! Areas of interest:
   author={Ayers, Danny},
   year={2025},
   url={http://purl.org/stuff/zpt/},
-  note={Version 0.1.0}
+  note={Version 0.2.0}
 }
 ```
 

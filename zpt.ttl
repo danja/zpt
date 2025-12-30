@@ -22,7 +22,7 @@ zpt: a owl:Ontology, skos:ConceptScheme, doap:Project ;
         foaf:name "Danny Ayers" ;
         foaf:homepage <https://danny.ayers.name>
     ] ;
-    owl:versionInfo "0.1.0" ;
+    owl:versionInfo "0.2.0" ;
     owl:imports <http://purl.org/stuff/ragno/> ,
                 <http://www.w3.org/2004/02/skos/core> ,
                 <http://www.w3.org/ns/prov-o#> ;
@@ -125,20 +125,19 @@ zpt:NavigationAgent a owl:Class ;
     skos:definition "Human or artificial agent that navigates knowledge spaces using ZPT operations."@en .
 
 # Specific Zoom Levels
+zpt:MicroLevel a zpt:ZoomLevel ;
+    rdfs:label "Micro Level"@en ;
+    skos:prefLabel "Micro"@en ;
+    skos:definition "Focus on sub-entity attributes and fine-grained components."@en ;
+    zpt:abstractionOrder 1 ;
+    zpt:correspondsToRagno ragno:Attribute .
 
 zpt:EntityLevel a zpt:ZoomLevel ;
     rdfs:label "Entity Level"@en ;
     skos:prefLabel "Entity"@en ;
     skos:definition "Focus on individual named entities and their immediate properties."@en ;
-    zpt:abstractionOrder 1 ;
-    zpt:correspondsToRagno ragno:Entity .
-
-zpt:UnitLevel a zpt:ZoomLevel ;
-    rdfs:label "Unit Level"@en ;
-    skos:prefLabel "Semantic Unit"@en ;
-    skos:definition "Focus on independent semantic events and local summaries."@en ;
     zpt:abstractionOrder 2 ;
-    zpt:correspondsToRagno ragno:Unit .
+    zpt:correspondsToRagno ragno:Entity .
 
 zpt:TextLevel a zpt:ZoomLevel ;
     rdfs:label "Text Level"@en ;
@@ -147,18 +146,25 @@ zpt:TextLevel a zpt:ZoomLevel ;
     zpt:abstractionOrder 3 ;
     zpt:correspondsToRagno ragno:TextElement .
 
+zpt:UnitLevel a zpt:ZoomLevel ;
+    rdfs:label "Unit Level"@en ;
+    skos:prefLabel "Semantic Unit"@en ;
+    skos:definition "Focus on independent semantic events and local summaries."@en ;
+    zpt:abstractionOrder 4 ;
+    zpt:correspondsToRagno ragno:Unit .
+
 zpt:CommunityLevel a zpt:ZoomLevel ;
     rdfs:label "Community Level"@en ;
     skos:prefLabel "Community"@en ;
     skos:definition "Focus on high-level insights and community summaries."@en ;
-    zpt:abstractionOrder 4 ;
+    zpt:abstractionOrder 5 ;
     zpt:correspondsToRagno ragno:CommunityElement .
 
 zpt:CorpusLevel a zpt:ZoomLevel ;
     rdfs:label "Corpus Level"@en ;
     skos:prefLabel "Corpus Overview"@en ;
     skos:definition "Focus on complete knowledge base structure and metadata."@en ;
-    zpt:abstractionOrder 5 ;
+    zpt:abstractionOrder 6 ;
     zpt:correspondsToRagno ragno:Corpus .
 
 # Core Properties
@@ -194,6 +200,12 @@ zpt:withPanDomain a owl:ObjectProperty ;
     rdfs:range zpt:PanDomain ;
     rdfs:label "with pan domain"@en ;
     rdfs:comment "Specifies the domain scope for a pan state."@en .
+
+zpt:withCorpuscleScope a owl:ObjectProperty ;
+    rdfs:domain zpt:PanState ;
+    rdfs:range ragno:Corpuscle ;
+    rdfs:label "with corpuscle scope"@en ;
+    rdfs:comment "Restricts the pan scope to one or more corpuscle subsets."@en .
 
 zpt:withTiltProjection a owl:ObjectProperty ;
     rdfs:domain zpt:TiltState ;
@@ -323,6 +335,11 @@ zpt:TemporalProjection a zpt:TiltProjection ;
     skos:prefLabel "Time-based View"@en ;
     skos:definition "Information access organized by temporal relationships."@en .
 
+zpt:MemoryProjection a zpt:TiltProjection ;
+    rdfs:label "Memory Projection"@en ;
+    skos:prefLabel "Memory Lens"@en ;
+    skos:definition "Information access organized by memory importance and access patterns."@en .
+
 # Pan Domain Types
 
 zpt:TopicDomain a zpt:PanDomain ;
@@ -344,3 +361,8 @@ zpt:GeospatialDomain a zpt:PanDomain ;
     rdfs:label "Geospatial Domain"@en ;
     skos:prefLabel "Geographic Scope"@en ;
     skos:definition "Domain defined by geographic or spatial boundaries."@en .
+
+zpt:CorpuscleDomain a zpt:PanDomain ;
+    rdfs:label "Corpuscle Domain"@en ;
+    skos:prefLabel "Corpuscle Scope"@en ;
+    skos:definition "Domain defined by corpuscle subsets within a corpus."@en .

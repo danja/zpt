@@ -38,9 +38,10 @@ graph TB
     end
     
     subgraph "Zoom Levels"
+        MicroLevel[zpt:MicroLevel]
         EntityLevel[zpt:EntityLevel]
-        UnitLevel[zpt:UnitLevel]
         TextLevel[zpt:TextLevel]
+        UnitLevel[zpt:UnitLevel]
         CommunityLevel[zpt:CommunityLevel]
         CorpusLevel[zpt:CorpusLevel]
     end
@@ -49,12 +50,16 @@ graph TB
         EmbeddingProjection[zpt:EmbeddingProjection]
         KeywordProjection[zpt:KeywordProjection]
         GraphProjection[zpt:GraphProjection]
+        TemporalProjection[zpt:TemporalProjection]
+        MemoryProjection[zpt:MemoryProjection]
     end
     
     subgraph "Pan Domains"
         TopicDomain[zpt:TopicDomain]
         EntityDomain[zpt:EntityDomain]
         TemporalDomain[zpt:TemporalDomain]
+        GeospatialDomain[zpt:GeospatialDomain]
+        CorpuscleDomain[zpt:CorpuscleDomain]
     end
     
     %% Core inheritance
@@ -80,19 +85,24 @@ graph TB
     TiltState -->|zpt:withTiltProjection| TiltProjection
     
     %% Specific instances
+    MicroLevel -.->|rdf:type| ZoomLevel
     EntityLevel -.->|rdf:type| ZoomLevel
-    UnitLevel -.->|rdf:type| ZoomLevel
     TextLevel -.->|rdf:type| ZoomLevel
+    UnitLevel -.->|rdf:type| ZoomLevel
     CommunityLevel -.->|rdf:type| ZoomLevel
     CorpusLevel -.->|rdf:type| ZoomLevel
     
     EmbeddingProjection -.->|rdf:type| TiltProjection
     KeywordProjection -.->|rdf:type| TiltProjection
     GraphProjection -.->|rdf:type| TiltProjection
+    TemporalProjection -.->|rdf:type| TiltProjection
+    MemoryProjection -.->|rdf:type| TiltProjection
     
     TopicDomain -.->|rdf:type| PanDomain
     EntityDomain -.->|rdf:type| PanDomain
     TemporalDomain -.->|rdf:type| PanDomain
+    GeospatialDomain -.->|rdf:type| PanDomain
+    CorpuscleDomain -.->|rdf:type| PanDomain
     
     %% Navigation relationships
     NavigationView -->|zpt:selectedCorpuscle| NavigableCorpuscle
@@ -106,5 +116,5 @@ graph TB
     
     class NavigationView,NavigationSession,NavigationAgent,NavigableCorpuscle,NavigableElement zptCore
     class ZoomState,PanState,TiltState zptState
-    class ZoomLevel,PanDomain,TiltProjection,NavigationDimension,EntityLevel,UnitLevel,TextLevel,CommunityLevel,CorpusLevel,EmbeddingProjection,KeywordProjection,GraphProjection,TopicDomain,EntityDomain,TemporalDomain zptDimension
+    class ZoomLevel,PanDomain,TiltProjection,NavigationDimension,MicroLevel,EntityLevel,TextLevel,UnitLevel,CommunityLevel,CorpusLevel,EmbeddingProjection,KeywordProjection,GraphProjection,TemporalProjection,MemoryProjection,TopicDomain,EntityDomain,TemporalDomain,GeospatialDomain,CorpuscleDomain zptDimension
     class PROVEntity,PROVActivity,PROVAgent,SKOSConcept,SKOSCollection,RagnoElement,RagnoCorpuscle external

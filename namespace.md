@@ -2,8 +2,8 @@
 
 **Namespace URI:** http://purl.org/stuff/zpt/  
 **Preferred Namespace Prefix:** zpt  
-**Date:** 2025-06-02  
-**Current Version:** 0.1.0  
+**Date:** 2025-12-30  
+**Current Version:** 0.2.0  
 **Editor:** Danny Ayers
 
 ## Abstract
@@ -87,23 +87,26 @@ ZPT Knowledge Navigation Ontology
 │   └── zpt:TiltState ← prov:Entity
 │
 ├── Zoom Levels (instances of zpt:ZoomLevel)
-│   ├── zpt:EntityLevel (order: 1, maps to ragno:Entity)
-│   ├── zpt:UnitLevel (order: 2, maps to ragno:Unit)
+│   ├── zpt:MicroLevel (order: 1, maps to ragno:Attribute)
+│   ├── zpt:EntityLevel (order: 2, maps to ragno:Entity)
 │   ├── zpt:TextLevel (order: 3, maps to ragno:TextElement)
-│   ├── zpt:CommunityLevel (order: 4, maps to ragno:CommunityElement)
-│   └── zpt:CorpusLevel (order: 5, maps to ragno:Corpus)
+│   ├── zpt:UnitLevel (order: 4, maps to ragno:Unit)
+│   ├── zpt:CommunityLevel (order: 5, maps to ragno:CommunityElement)
+│   └── zpt:CorpusLevel (order: 6, maps to ragno:Corpus)
 │
 ├── Pan Domains (instances of zpt:PanDomain)
 │   ├── zpt:TopicDomain (thematic scope)
 │   ├── zpt:EntityDomain (entity-centered scope)
 │   ├── zpt:TemporalDomain (time-based scope)
-│   └── zpt:GeospatialDomain (geographic scope)
+│   ├── zpt:GeospatialDomain (geographic scope)
+│   └── zpt:CorpuscleDomain (corpuscle scope)
 │
 └── Tilt Projections (instances of zpt:TiltProjection)
     ├── zpt:EmbeddingProjection (vector similarity)
     ├── zpt:KeywordProjection (keyword matching)
     ├── zpt:GraphProjection (graph traversal)
-    └── zpt:TemporalProjection (time-based view)
+    ├── zpt:TemporalProjection (time-based view)
+    └── zpt:MemoryProjection (memory lens)
 ```
 
 ### Key Relationships
@@ -137,11 +140,12 @@ NavigationView
 
 **Zoom Levels** (increasing abstraction):
 ```
-1. EntityLevel     [most specific - individual entities]
-2. UnitLevel       [semantic events and summaries]  
+1. MicroLevel      [attributes and fine-grained components]
+2. EntityLevel     [individual entities]
 3. TextLevel       [full text documents]
-4. CommunityLevel  [high-level insights]
-5. CorpusLevel     [most abstract - entire knowledge base]
+4. UnitLevel       [semantic events and summaries]
+5. CommunityLevel  [high-level insights]
+6. CorpusLevel     [most abstract - entire knowledge base]
 ```
 
 ## Classes
@@ -588,4 +592,4 @@ ex:myNavigationView zpt:selectedCorpuscle ex:mlCorpuscle .
 
 ---
 
-*This document was generated on 2025-06-02 and describes version 0.1.0 of the ZPT vocabulary.*
+*This document was generated on 2025-12-30 and describes version 0.2.0 of the ZPT vocabulary.*

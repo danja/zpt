@@ -12,7 +12,7 @@ The ZPT (Zoom-Pan-Tilt) ontology brings this camera metaphor to digital knowledg
 Just like adjusting a camera's zoom, this controls how much detail you see:
 - Zoom out: See broad summaries and overviews of entire topics
 - Zoom in: Focus on specific facts, entities, or detailed text passages
-- Examples: Individual person's name → biographical summary → full biography → entire historical period
+- Examples: Date of birth → individual person's name → full biography → biographical summary → historical movement → entire historical period
 
 **🔄 Pan - Domain of Interest**  
 Like panning a camera across a landscape, this controls what subject areas you're looking at:
@@ -23,7 +23,7 @@ Like panning a camera across a landscape, this controls what subject areas you'r
 **📐 Tilt - Information Perspective**
 Like tilting a camera to change the viewing angle, this controls how information is presented:
 - Different "filters" reveal different aspects of the same information
-- Examples: Keyword-based view → similarity-based view → network-based view → chronological view
+- Examples: Keyword-based view → similarity-based view → network-based view → chronological view → memory lens
 
 ### Why This Matters
 
@@ -49,7 +49,7 @@ Complete workflows that track how someone moves through the knowledge space over
 
 ### Integration Points
 
-**With Ragno**: ZPT zoom levels map directly to Ragno's element hierarchy (Entity → Unit → TextElement → CommunityElement → Corpus)
+**With Ragno**: ZPT zoom levels map directly to Ragno's element hierarchy (Attribute → Entity → TextElement → Unit → CommunityElement → Corpus)
 
 **With SKOS**: Navigation domains use SKOS collections, and zoom levels form SKOS concept hierarchies
 

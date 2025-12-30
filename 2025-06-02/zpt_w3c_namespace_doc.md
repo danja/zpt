@@ -2,11 +2,11 @@
 
 **Namespace URI:** http://purl.org/stuff/zpt/  
 **Preferred Namespace Prefix:** zpt  
-**Date:** 2025-06-02  
-**Current Version:** 0.1.0  
-**This Version:** http://purl.org/stuff/zpt/0.1.0  
+**Date:** 2025-12-30  
+**Current Version:** 0.2.0  
+**This Version:** http://purl.org/stuff/zpt/0.2.0  
 **Latest Version:** http://purl.org/stuff/zpt/  
-**Previous Version:** None  
+**Previous Version:** http://purl.org/stuff/zpt/0.1.0  
 
 **Editors:**
 - Danny Ayers, Independent
@@ -130,7 +130,7 @@ This document uses the following namespace prefixes:
 **Label:** Pan Domain  
 **Subclass of:** skos:Collection, zpt:NavigationDimension  
 **Definition:** Defines the conceptual boundaries of information under consideration.  
-**Usage Note:** A thematic or topical scope that constrains the knowledge space being navigated. Can be defined by subject matter, entities, temporal periods, or geographic regions.
+**Usage Note:** A thematic or topical scope that constrains the knowledge space being navigated. Can be defined by subject matter, entities, temporal periods, geographic regions, or corpuscle subsets.
 
 #### zpt:TiltProjection
 **URI:** http://purl.org/stuff/zpt/TiltProjection  
@@ -200,6 +200,14 @@ This document uses the following namespace prefixes:
 **Range:** zpt:PanDomain  
 **Definition:** Specifies the domain scope for a pan state.  
 **Usage Note:** Links the current pan state to specific domain boundaries or topical constraints.
+
+#### zpt:withCorpuscleScope
+**URI:** http://purl.org/stuff/zpt/withCorpuscleScope  
+**Label:** with corpuscle scope  
+**Domain:** zpt:PanState  
+**Range:** ragno:Corpuscle  
+**Definition:** Restricts the pan scope to one or more corpuscle subsets.  
+**Usage Note:** Allows navigation to be scoped to specific corpuscle collections within a corpus.
 
 #### zpt:withTiltProjection
 **URI:** http://purl.org/stuff/zpt/withTiltProjection  
@@ -349,12 +357,20 @@ This document uses the following namespace prefixes:
 
 ### Predefined Zoom Levels
 
+#### zpt:MicroLevel
+**URI:** http://purl.org/stuff/zpt/MicroLevel  
+**Type:** zpt:ZoomLevel  
+**Label:** Micro Level  
+**Definition:** Focus on sub-entity attributes and fine-grained components.  
+**Abstraction Order:** 1  
+**Corresponds to:** ragno:Attribute
+
 #### zpt:EntityLevel
 **URI:** http://purl.org/stuff/zpt/EntityLevel  
 **Type:** zpt:ZoomLevel  
 **Label:** Entity Level  
 **Definition:** Focus on individual named entities and their immediate properties.  
-**Abstraction Order:** 1  
+**Abstraction Order:** 2  
 **Corresponds to:** ragno:Entity
 
 #### zpt:UnitLevel
@@ -362,7 +378,7 @@ This document uses the following namespace prefixes:
 **Type:** zpt:ZoomLevel  
 **Label:** Unit Level  
 **Definition:** Focus on independent semantic events and local summaries.  
-**Abstraction Order:** 2  
+**Abstraction Order:** 4  
 **Corresponds to:** ragno:Unit
 
 #### zpt:TextLevel
@@ -378,7 +394,7 @@ This document uses the following namespace prefixes:
 **Type:** zpt:ZoomLevel  
 **Label:** Community Level  
 **Definition:** Focus on high-level insights and community summaries.  
-**Abstraction Order:** 4  
+**Abstraction Order:** 5  
 **Corresponds to:** ragno:CommunityElement
 
 #### zpt:CorpusLevel
@@ -386,7 +402,7 @@ This document uses the following namespace prefixes:
 **Type:** zpt:ZoomLevel  
 **Label:** Corpus Level  
 **Definition:** Focus on complete knowledge base structure and metadata.  
-**Abstraction Order:** 5  
+**Abstraction Order:** 6  
 **Corresponds to:** ragno:Corpus
 
 ### Predefined Tilt Projections
@@ -415,6 +431,12 @@ This document uses the following namespace prefixes:
 **Label:** Temporal Projection  
 **Definition:** Information access organized by temporal relationships.
 
+#### zpt:MemoryProjection
+**URI:** http://purl.org/stuff/zpt/MemoryProjection  
+**Type:** zpt:TiltProjection  
+**Label:** Memory Projection  
+**Definition:** Information access organized by memory importance and access patterns.
+
 ### Predefined Pan Domains
 
 #### zpt:TopicDomain
@@ -440,6 +462,12 @@ This document uses the following namespace prefixes:
 **Type:** zpt:PanDomain  
 **Label:** Geospatial Domain  
 **Definition:** Domain defined by geographic or spatial boundaries.
+
+#### zpt:CorpuscleDomain
+**URI:** http://purl.org/stuff/zpt/CorpuscleDomain  
+**Type:** zpt:PanDomain  
+**Label:** Corpuscle Domain  
+**Definition:** Domain defined by corpuscle subsets within a corpus.
 
 ## Examples
 
@@ -505,4 +533,4 @@ ex:myNavigationView zpt:selectedCorpuscle ex:mlCorpuscle .
 
 ---
 
-*This document was generated on 2025-06-02 and describes version 0.1.0 of the ZPT vocabulary.*
+*This document was generated on 2025-12-30 and describes version 0.2.0 of the ZPT vocabulary.*

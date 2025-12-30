@@ -7,7 +7,7 @@ Development of a semantic knowledge navigation system using Zoom-Pan-Tilt metaph
 
 ### ZPT Ontology Core Classes
 - `zpt:NavigationView` - Current knowledge viewport
-- `zpt:ZoomLevel` - Abstraction hierarchy (Entity → Unit → TextElement → Corpus)
+- `zpt:ZoomLevel` - Abstraction hierarchy (Micro → Entity → Text → Unit → Community → Corpus)
 - `zpt:PanDomain` - Topic/concept scope boundaries
 - `zpt:TiltProjection` - Information representation parameters
 

@@ -5,7 +5,7 @@
 
 A semantic vocabulary for dynamic knowledge navigation using camera metaphors to control information access across three dimensions: **Zoom** (abstraction level), **Pan** (domain scope), and **Tilt** (representation method).
 
-**Status 2025-06-02 : first proper draft, untested in practice; docs still covered in AI fingerprints.**
+**Status 2025-12-30 : aligned with Semem ZPT implementation; vocabulary refreshed and still evolving.**
 
 ## Documentation
 
@@ -23,9 +23,9 @@ Agents, both human and artificial have limits on the amount of information they 
 
 Ragno describes a heterogenous knowledge graph in a generalized fashion, loosely scale-free - it may be a domain-specific local knowledgebase or the Web as a whole. ZPT adds navigation capabilities that adapt information presentation to user (agent) needs. A system may dynamically select optimal knowledge based on query requirements across three orthogonal dimensions:
 
-- **🔍 Zoom**: Controls abstraction level (entity → summary → full text → community → corpus)
-- **🔄 Pan**: Controls domain boundaries (topics, entities, temporal periods, geographic regions)  
-- **📐 Tilt**: Controls representation method (embeddings, keywords, graph structure, temporal)
+- **🔍 Zoom**: Controls abstraction level (micro → entity → text → unit → community → corpus)
+- **🔄 Pan**: Controls domain boundaries (topics, entities, temporal periods, geographic regions, corpuscle scopes)  
+- **📐 Tilt**: Controls representation method (embeddings, keywords, graph structure, temporal, memory)
 
 *ZPT is being developed in parallel with Ragno and application tooling with [Semem](https://github.com/danja/semem). Still early days.*
 
@@ -92,7 +92,7 @@ In use the navigation flow might look something like this, where *User Query* co
 
 ## Development Status
 
-**Current Version**: 0.1.0 (Initial Release)
+**Current Version**: 0.2.0 (Semem-aligned update)
 
 - ✅ Core ontology design complete
 - ✅ Integration with Ragno defined
@@ -150,7 +150,7 @@ Contributions welcome! Areas of interest:
   author={Ayers, Danny},
   year={2025},
   url={http://purl.org/stuff/zpt/},
-  note={Version 0.1.0}
+  note={Version 0.2.0}
 }
 ```
 
