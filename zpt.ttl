@@ -94,6 +94,21 @@ zpt:NavigationDimension a owl:Class ;
 
 # Ragno Integration Classes
 
+# ZPT Corpuscle
+zpt:Corpuscle a owl:Class ;
+    rdfs:subClassOf ragno:Corpuscle ;
+    rdfs:label "Corpuscle"@en ;
+    rdfs:comment "ZPT corpuscle used for context-level navigation objects."@en ;
+    skos:definition "ZPT-specific corpuscle used to anchor context slices."@en .
+
+# Context message nodes
+zpt:Context a owl:Class ;
+    rdfs:subClassOf skos:Concept , zpt:Corpuscle ;
+    rdfs:label "Context"@en ;
+    rdfs:comment "A context message that can be decomposed and re-composed."@en ;
+    skos:definition "A text representation of an LLM context message."@en .
+
+
 ## ZPT-Enhanced Corpuscle
 zpt:NavigableCorpuscle a owl:Class ;
     rdfs:subClassOf ragno:Corpuscle ;
@@ -168,6 +183,14 @@ zpt:CorpusLevel a zpt:ZoomLevel ;
     zpt:correspondsToRagno ragno:Corpus .
 
 # Core Properties
+
+## Context Content Property
+zpt:Content a owl:DatatypeProperty ;
+    rdfs:domain zpt:Context ;
+    rdfs:range xsd:string ;
+    rdfs:label "content"@en ;
+    rdfs:comment "Text representation of an LLM context message."@en .
+
 
 ## Navigation State Properties
 zpt:hasZoomState a owl:ObjectProperty, owl:FunctionalProperty ;
