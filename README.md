@@ -5,7 +5,7 @@
 
 A semantic vocabulary for dynamic knowledge navigation using camera metaphors to control information access across three dimensions: **Zoom** (abstraction level), **Pan** (domain scope), and **Tilt** (representation method).
 
-**Status 2025-12-30 : aligned with Semem ZPT implementation; vocabulary refreshed and still evolving.**
+**Status 2025-12-30 : aligned with [Semem](https://github.com/danja/semem) ZPT implementation; vocabulary refreshed and still evolving.**
 
 ## Documentation
 
